@@ -1,15 +1,15 @@
 import * as THREE from 'three'
-import { MeshLine, MeshLineMaterial, MeshLineRaycast } from 'three.meshline';
-import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader'
-import React, { Suspense, useEffect, useState, useMemo, useRef, useLayoutEffect } from 'react'
-import { Canvas, useLoader, useThree, useFrame, } from '@react-three/fiber'
-import { useTransition, useSpring, a } from '@react-spring/three'
-import { Text, Line } from '@react-three/drei'
+import React, { Suspense, useEffect, useState } from 'react'
+import { Canvas, useLoader, useFrame, } from '@react-three/fiber'
+import { a } from '@react-spring/three'
+import { Text, Line, useTexture  } from '@react-three/drei'
 import { gsap } from "gsap";
 
+import { TextureLoader } from 'three/src/loaders/TextureLoader'
 
 const menuItems = ['Work', 'About', 'Jobs', 'Contact'];
 const clock = new THREE.Clock()
+
 
 
 
@@ -30,11 +30,9 @@ function Intro() {
     const [vec] = useState(() => new THREE.Vector3())
     
     let scrollY = window.scrollY
-    console.log(scrollY)
     return useFrame((state) => {
-      if(clock.getElapsedTime()<=1){state.camera.position.set(-10,5,50-(clock.getElapsedTime()*9),0.05)}
       
-      if(clock.getElapsedTime()>=1 && clock.getElapsedTime()<=3.5){state.camera.position.set(-10,5,50-(clock.getElapsedTime()*9),0.05)}
+      if(clock.getElapsedTime()<=1.86){state.camera.position.set(-10,5,50-(clock.getElapsedTime()*17),0.05)}
       //state.camera.position.set(-10,5,18.2)
       state.camera.lookAt(0, 0, 0)
     })
@@ -45,24 +43,36 @@ function Triangles() {
 
     let upperTriangle = new THREE.BufferGeometry()
     let lowerTriangle = new THREE.BufferGeometry()
-    var material = new THREE.MeshBasicMaterial({color: 0xFFF133, vertexColors: THREE.FaceColors}); 
+
+    const floorTexture = new THREE.TextureLoader().load('/PavingStones092.png')
+    floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
+    floorTexture.repeat.set( 10, 10 );
+    var floorMaterial = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('/PavingStones092.png')} );
+
+    const material = new THREE.MeshBasicMaterial( { color: 0x191A1F} );
+
+    
+
 
     useFrame(() => {
+      console.log(floorMaterial)
       var multiplier = clock.getElapsedTime()*2.25
         
       const upperTrianglePoints = [
-          new THREE.Vector3(-26, clock.getElapsedTime()<=7.15? multiplier:14.3, -2.35), //c
-          new THREE.Vector3(-26, 1.5, -2.35), //b
-          new THREE.Vector3(28, 1.5, -2.35), //a
+          new THREE.Vector3(-26, 50, -2.35), 
+          new THREE.Vector3(-26, 25-clock.getElapsedTime()*10>=1.5? 25-clock.getElapsedTime()*10:1.5, -2.35), 
+          new THREE.Vector3(28, 1.5, -2.35), 
       ]
 
       const lowerTrianglePoints = [
-          new THREE.Vector3(28, -(clock.getElapsedTime()<=7.15? multiplier:14.3), -2.35), //c
-          new THREE.Vector3(28, -0.77, -2.35), //b
-          new THREE.Vector3(-26, -0.77, -2.35), //a
+          new THREE.Vector3(28, -14.3, -2.35), 
+          new THREE.Vector3(28, -25+clock.getElapsedTime()*10<=-0.77? -25+clock.getElapsedTime()*10:-0.77, -2.35), 
+          new THREE.Vector3(-26, -0.77, -2.35), 
       ]
           upperTriangle.setFromPoints(upperTrianglePoints)
           lowerTriangle.setFromPoints(lowerTrianglePoints)
+          
+          trianglesMesh.current.material.needsUpdate = true
     }, [])
 
   
@@ -71,12 +81,12 @@ function Triangles() {
 
   lowerTriangle.computeVertexNormals()
 
-  return (<>
-    <mesh ref={trianglesMesh} geometry={upperTriangle} material={material} />
-    <mesh ref={trianglesMesh} geometry={lowerTriangle} material={material} />
+  return (
+    <>
+      <mesh ref={trianglesMesh} geometry={upperTriangle} material={floorMaterial} />
+      <mesh ref={trianglesMesh} geometry={lowerTriangle} material={material} />
     </>
    )
-
 }
 
 function Borders(){
@@ -95,11 +105,9 @@ function Borders(){
 
     const topborderGeometry = new THREE.BufferGeometry().setFromPoints(toppoints)
     const bottomborderGeometry = new THREE.BufferGeometry().setFromPoints(bottompoints)
-    const topborderGeometry2 = new THREE.BufferGeometry().setFromPoints(toppoints)
-    const bottomborderGeometry2 = new THREE.BufferGeometry().setFromPoints(bottompoints)
 
-    const material = new THREE.LineBasicMaterial( {
-      color: 0x000000,
+    const material = new THREE.LineBasicMaterial({
+      color: 0xFFFFFF,
       transparent:true,
     } );
 
@@ -116,12 +124,12 @@ function Borders(){
 
 
       
-      if(clock.getElapsedTime()>=3.5){
+      if(clock.getElapsedTime()>=1.86){
         topborderGeometry.setFromPoints(topPoints);
         bottomborderGeometry.setFromPoints(bottomPoints);
-        setSee(-3.5+clock.getElapsedTime());
+        setSee(-1.86+clock.getElapsedTime());
         setVisible(true)
-        if(-3.5+clock.getElapsedTime()*2<=5){setWidth(-3.5+clock.getElapsedTime()*2)}
+        if(-1.86+clock.getElapsedTime()*2<=5){setWidth(-1.86+clock.getElapsedTime()*2)}
       }
 
     }, [])
@@ -141,28 +149,23 @@ function Borders(){
     
 }
 
-const colors = ['#21242d', '#ea5158', '#0d4663', '#ffbcb7', '#2d4a3e', '#8bd8d2']
-
-const urls = ['night', 'city', 'morning', 'tubes', 'woods', 'beach'].map(
-  (name) => `https://raw.githubusercontent.com/pmndrs/react-three-fiber/v5.3.22/examples/src/resources/images/svg/${name}.svg`
-)
 
 function Shape({ shape, rotation, position, color, opacity, index }) {
   if (!position) return null
-    return (
+  return (
       <a.mesh rotation={rotation} position={position.to((x, y, z) => [x, y, z + index * 50])}>
         <a.meshPhongMaterial color={color} opacity={opacity} side={THREE.DoubleSide} depthWrite={false} transparent />
         <shapeGeometry args={[shape]} />
       </a.mesh>
     )
-  }
+}
 
 
 export default function App() {
   return (
     <main className='bg-black'>
-      <Canvas style={{height:"100vh", backgroundColor:"white"}} concurrent gl={{ alpha: false }} pixelRatio={[1, 1.5]} camera={{ fov: 15 }}>
-          <color attach="background" args={['white']} />
+      <Canvas style={{height:"100vh", backgroundColor:"white"}} concurrent="true" gl={{ alpha: false }} pixelratio={[1, 1.5]} camera={{ fov: 15 }}>
+          <color attach="background" args={['black']} />
           <Suspense fallback={null}>
             <group position={[0, -1, 0]}>
               <VideoText position={[0, 0.5, -2.1]} />
