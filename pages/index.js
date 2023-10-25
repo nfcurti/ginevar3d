@@ -1,11 +1,9 @@
 import * as THREE from 'three'
-import React, { Suspense, useEffect, useState } from 'react'
-import { Canvas, useLoader, useFrame, } from '@react-three/fiber'
+import React, { Suspense, useEffect, useState  } from 'react'
+import { Canvas , useFrame, } from '@react-three/fiber'
 import { a } from '@react-spring/three'
-import { Text, Line, useTexture  } from '@react-three/drei'
-import { gsap } from "gsap";
-
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import { Text, Line,   } from '@react-three/drei'
+import PortfolioViewer from "/components/portfolioViewer"
 
 const menuItems = ['Work', 'About', 'Jobs', 'Contact'];
 const clock = new THREE.Clock()
@@ -31,9 +29,16 @@ function Intro() {
     
     let scrollY = window.scrollY
     return useFrame((state) => {
+      var algo = window.scrollY + 50-(clock.getElapsedTime()*17)
+      console.log(window.scrollY)
+      
       
       if(clock.getElapsedTime()<=1.86){state.camera.position.set(-10,5,50-(clock.getElapsedTime()*17),0.05)}
-      //state.camera.position.set(-10,5,18.2)
+      if(clock.getElapsedTime()>=1.86 && window.scrollY<=455){
+      state.camera.position.set(-10,5,18.38+window.scrollY/10)
+      state.camera.updateProjectionMatrix();
+    }
+
       state.camera.lookAt(0, 0, 0)
     })
 }
@@ -44,30 +49,21 @@ function Triangles() {
     let upperTriangle = new THREE.BufferGeometry()
     let lowerTriangle = new THREE.BufferGeometry()
 
-    const floorTexture = new THREE.TextureLoader().load('/PavingStones092.png')
-    floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
-    floorTexture.repeat.set( 10, 10 );
-    var floorMaterial = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load('/PavingStones092.png')} );
-
     const material = new THREE.MeshBasicMaterial( { color: 0x191A1F} );
 
-    
-
-
     useFrame(() => {
-      console.log(floorMaterial)
       var multiplier = clock.getElapsedTime()*2.25
         
       const upperTrianglePoints = [
           new THREE.Vector3(-26, 50, -2.35), 
-          new THREE.Vector3(-26, 25-clock.getElapsedTime()*10>=1.5? 25-clock.getElapsedTime()*10:1.5, -2.35), 
+          new THREE.Vector3(-26, 25-clock.getElapsedTime()*7>=1.5? 25-clock.getElapsedTime()*7:1.5, -2.35), 
           new THREE.Vector3(28, 1.5, -2.35), 
       ]
 
       const lowerTrianglePoints = [
           new THREE.Vector3(28, -14.3, -2.35), 
-          new THREE.Vector3(28, -25+clock.getElapsedTime()*10<=-0.77? -25+clock.getElapsedTime()*10:-0.77, -2.35), 
-          new THREE.Vector3(-26, -0.77, -2.35), 
+          new THREE.Vector3(28, -25+clock.getElapsedTime()*7<=-0.77? -25+clock.getElapsedTime()*7:-0.77, -2.35), 
+          new THREE.Vector3(-2600, -0.77, -2.35), 
       ]
           upperTriangle.setFromPoints(upperTrianglePoints)
           lowerTriangle.setFromPoints(lowerTrianglePoints)
@@ -83,7 +79,7 @@ function Triangles() {
 
   return (
     <>
-      <mesh ref={trianglesMesh} geometry={upperTriangle} material={floorMaterial} />
+      <mesh ref={trianglesMesh} geometry={upperTriangle} material={material} />
       <mesh ref={trianglesMesh} geometry={lowerTriangle} material={material} />
     </>
    )
@@ -109,6 +105,7 @@ function Borders(){
     const material = new THREE.LineBasicMaterial({
       color: 0xFFFFFF,
       transparent:true,
+      opacity:0.2
     } );
 
     useFrame((state) => {
@@ -129,7 +126,13 @@ function Borders(){
         bottomborderGeometry.setFromPoints(bottomPoints);
         setSee(-1.86+clock.getElapsedTime());
         setVisible(true)
-        if(-1.86+clock.getElapsedTime()*2<=5){setWidth(-1.86+clock.getElapsedTime()*2)}
+        if(-3+clock.getElapsedTime()*2<=5){
+          setWidth(-3+clock.getElapsedTime()*2)
+        }
+      }
+
+      if(window.scrollY>=1){
+        setVisible(false)
       }
 
     }, [])
@@ -138,8 +141,8 @@ function Borders(){
     
       return (<>
         <line visible={visible} ref={bordersMesh}  geometry={topborderGeometry} material={material}/>
-        <Line opacity={see}     points={bottompoints} color="black" lineWidth={width} dashed={false} />
-        <Line opacity={see}     points={toppoints} color="black" lineWidth={width} dashed={false} /> 
+        {window.scrollY<=1? <Line opacity={see}     points={bottompoints} color="black" lineWidth={width} dashed={false} />:""}
+        {window.scrollY<=1? <Line opacity={see}     points={toppoints} color="black" lineWidth={width} dashed={false} /> :""}
         <line visible={visible} ref={bordersMesh}  geometry={bottomborderGeometry} material={material}/>
         </>
       )
@@ -150,33 +153,32 @@ function Borders(){
 }
 
 
-function Shape({ shape, rotation, position, color, opacity, index }) {
-  if (!position) return null
-  return (
-      <a.mesh rotation={rotation} position={position.to((x, y, z) => [x, y, z + index * 50])}>
-        <a.meshPhongMaterial color={color} opacity={opacity} side={THREE.DoubleSide} depthWrite={false} transparent />
-        <shapeGeometry args={[shape]} />
-      </a.mesh>
-    )
-}
 
 
 export default function App() {
+  const colorGray = new THREE.Color( 0x191A1F );
+  
+
   return (
-    <main className='bg-black'>
-      <Canvas style={{height:"100vh", backgroundColor:"white"}} concurrent="true" gl={{ alpha: false }} pixelratio={[1, 1.5]} camera={{ fov: 15 }}>
-          <color attach="background" args={['black']} />
-          <Suspense fallback={null}>
+    <main className=''>
+      <div>
+        <Canvas style={{height:"100vh", backgroundColor:"white"}} concurrent="true" gl={{ alpha: false }} pixelratio={[1, 1.5]} camera={{ fov: 15 }}>
+            <color attach="background" args={['black']} />
+            <Suspense fallback={null}>
+              <group position={[0, -1, 0]}>
+                <VideoText position={[0, 0.5, -2.1]} />
+              </group>
+              <Intro/>
+            </Suspense>
             <group position={[0, -1, 0]}>
-              <VideoText position={[0, 0.5, -2.1]} />
+                <Borders/>
+                <Triangles />
             </group>
-            <Intro/>
-          </Suspense>
-          <group position={[0, -1, 0]}>
-              <Borders/>
-              <Triangles />
-          </group>
-      </Canvas>
+        </Canvas>
+      </div>
+      <div className='' >
+        <PortfolioViewer/>
+      </div>
     </main>
   )
 }
