@@ -1,8 +1,8 @@
 import * as THREE from 'three'
-import React, { Suspense, useEffect, useState  } from 'react'
+import React, { Suspense, useEffect, useState, useRef  } from 'react'
 import { Canvas , useFrame, } from '@react-three/fiber'
 import { a } from '@react-spring/three'
-import { Text, Line,   } from '@react-three/drei'
+import { Text, Line, useGLTF, ContactShadows  } from '@react-three/drei'
 import PortfolioViewer from "/components/portfolioViewer"
 
 const menuItems = ['Work', 'About', 'Jobs', 'Contact'];
@@ -30,7 +30,6 @@ function Intro() {
     let scrollY = window.scrollY
     return useFrame((state) => {
       var algo = window.scrollY + 50-(clock.getElapsedTime()*17)
-      console.log(window.scrollY)
       
       
       if(clock.getElapsedTime()<=1.86){state.camera.position.set(-10,5,50-(clock.getElapsedTime()*17),0.05)}
@@ -152,7 +151,25 @@ function Borders(){
     
 }
 
-
+function Phone({ ...props }) {
+  const ref = useRef()
+  const { nodes, materials } = useGLTF('/iphone.glb')
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime()
+    ref.current.position.y = Math.sin( t ) * 1;
+  })
+  return (
+    <group {...props} dispose={null}>
+      <group ref={ref}>
+        <group position={[0, 0, 0]} rotation={[1, 0, 0]}>
+          <mesh castShadow receiveShadow geometry={nodes["Extrude_2_Cutouts"].children[0].geometry} material={materials["Metallic"]}/>
+          <mesh castShadow receiveShadow geometry={nodes["Extrude_2_Cutouts"].children[1].geometry} material={materials["schwarz glass"]}/>
+          <mesh castShadow receiveShadow geometry={nodes["Extrude_2_Cutouts"].children[2].geometry} material={materials["Mat.009"]}/>
+        </group>
+      </group>
+    </group>
+  )
+}
 
 
 export default function App() {
