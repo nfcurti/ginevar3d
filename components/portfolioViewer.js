@@ -1,15 +1,15 @@
 import * as THREE from 'three'
-import { useEffect, useRef, useState } from 'react'
+import React,{ useEffect, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useCursor, MeshReflectorMaterial, CameraControls, Text, Environment, useGLTF, Svg, PerspectiveCamera  } from '@react-three/drei'
 import { useRoute, useLocation } from 'wouter'
 import { easing } from 'maath'
 import getUuid from 'uuid-by-string'
-
-
+import gsap from 'gsap'
 
 //const GOLDENRATIO = 1.61803398875
 const GOLDENRATIO = 1
+const clock = new THREE.Clock()
 
 useGLTF.preload('/iphone.glb')
 useGLTF.preload('/imac.glb')
@@ -34,16 +34,23 @@ const images = [
 
 const images_desktop = [
   // Left
-   { position: [-3, 0, 0], rotation: [0, Math.PI / 2.5, 0], url:'/sdd.png'  },
-   { position: [-3, 0, 1.8], rotation: [0, Math.PI / 2.5, 0], url: '/bkd.png' },
-   { position: [-3, 0, 3.4], rotation: [0, Math.PI / 2.5, 0], url: '/isovoxd.png' },
+   { _id:1, factorpos: [11,-4.5,-1.5], position: [-3, 0, 0], rotation: [0, Math.PI / 2.5, 0], url:'/sdd.png'  },
+   { _id:2, factorpos: [7,-3,-2], position: [-3, 0, 1.8], rotation: [0, Math.PI / 2.5, 0], url: '/bkd.png' },
+   { _id:3, factorpos: [3,-2,-1], position: [-3, 0, 3.4], rotation: [0, Math.PI / 2.5, 0], url: '/isovoxd.png' },
   // Right
-   { position: [3, 0, 0], rotation: [0, -Math.PI / 2.5, 0], url: `/rpd.png` },
-   { position: [3, 0, 1.8], rotation: [0, -Math.PI / 2.5, 0], url: `/zwickiesd.png` },
-   { position: [3, 0, 3.4], rotation: [0, -Math.PI / 2.5, 0], url: `/alpacad.png` }
+   { _id:4, factorpos: [-11,-4.5,-1.5], position: [3, 0, 0], rotation: [0, -Math.PI / 2.5, 0], url: `/rpd.png` },
+   { _id:5, factorpos: [-7,-3,-2], position: [3, 0, 1.8], rotation: [0, -Math.PI / 2.5, 0], url: `/zwickiesd.png` },
+   { _id:6, factorpos: [-3,-2,-1], position: [3, 0, 3.4], rotation: [0, -Math.PI / 2.5, 0], url: `/alpacad.png` }
+]
+
+const textsData = [
+   { position: [-3, 1.5, 2], rotation: [0, 1.2, 0], url:'/WEBSITE.svg'  },
+   { position: [-0.2, 1.5, 2], rotation: [0, 0, 0], url: '/APPS.svg' },
+   { position: [2.3, 1.4, 2], rotation: [0, -1.2, 0], url: '/WEB3.svg' },
 ]
 
 
+//Mobile
 function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
   const ref = useRef()
   const clicked = useRef()
@@ -78,7 +85,6 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
   )
 }
 
-
 function Frame({ url, c = new THREE.Color(), ...props }) {
   const image = useRef()
   const frame = useRef()
@@ -86,7 +92,7 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
   const [hovered, hover] = useState(false)
   const [rnd] = useState(() => Math.random())
   const name = getUuid(url)
-  const name2 = getUuid(url+"1")
+  const name2 = url.split('/').join('').split('.png').join('')
   var isActive = params?.id === name
   useCursor(hovered)
   useFrame((state, dt) => {
@@ -95,17 +101,11 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
   })
   return (
     <group {...props}>
-      
       <Phone url={url} name={name2}   scale={0.005} position={[-0.7, -0.05, 0]} rotation={[0.57, 0, 0]} />
-      
-      <Text maxWidth={0.1} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO, 0]} fontSize={0.025}>
-        {url} 
-      </Text>
       
     </group>
   )
 }
-
 
 function Phone({ ...props }) {
   const ref = useRef()
@@ -120,6 +120,7 @@ function Phone({ ...props }) {
     const t = state.clock.getElapsedTime()
     ref.current.position.y = Math.sin( t ) * 1;
   })
+
   return (
     <group {...props} dispose={null}>
       <group ref={ref}>
@@ -135,17 +136,13 @@ function Phone({ ...props }) {
   )
 }
 
+//PC
 function Macbook({ ...props }) {
   const ref = useRef()
   const { nodes, materials } = useGLTF('/imac.glb');
   var textureLoaded = new THREE.TextureLoader().load("../"+props.url)
 
   
-  useEffect(() => {
-  })
-  
-  useFrame((state) => {
-  })
 
   return (
     <group {...props} dispose={null} scale={0.4} >
@@ -169,17 +166,22 @@ function Macbook({ ...props }) {
     </group>
   )
 }
+
 function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
   const ref = useRef()
   const clicked = useRef()
+  const [activeId, setActiveId] = useState([])
   const [, params] = useRoute('/item/:id')
   const [, setLocation] = useLocation()
   useEffect(() => {
     clicked.current = ref.current.getObjectByProperty( 'uuid' , params?.id )
     if (clicked.current) {
+      console.log(activeId)
       clicked.current.parent.updateWorldMatrix(true, true)
-      clicked.current.parent.localToWorld(p.set(3,0,0.75))
-      clicked.current.getWorldQuaternion(q)
+      //clicked.current.parent.localToWorld(p.set(3,0,1.8))
+      
+      clicked.current.parent.localToWorld(p.set(activeId.factorpos[0], activeId.factorpos[1], activeId.factorpos[2]))
+      clicked.current.parent.parent.getWorldQuaternion(q)
     } else {
       p.set(0, 0, 5.5)
       q.identity()
@@ -187,16 +189,19 @@ function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() 
   })
   useFrame((state, dt) => {
     easing.damp3(state.camera.position, p, 0.4, dt)
-    //easing.dampQ(state.camera.quaternion, q, 0.4, dt)
+    easing.dampQ(state.camera.quaternion, q, 0.4, dt)
   })
   return (
     
     <group
       ref={ref}
-      onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.uuid))}
+      onClick={(e) => {
+        e.stopPropagation();
+        setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.uuid);
+      }}
       onPointerMissed={() => setLocation('/')}>
       {images_desktop.map((props) => <>
-      <Macbook key={props.url} {...props} /> 
+      <Macbook onClick={()=>setActiveId(props)} key={props.url} {...props} /> 
       </>
       /* prettier-ignore */
       )}
@@ -204,17 +209,19 @@ function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() 
   )
 }
 
+//Textos
+function Texts (...props ){
+  const ref = React.useRef()
+  console.log(props[0].position)
 
-function Texts (...props){
+  
+  useFrame(()=>{
+    ref.current.position.y = 1.5+Math.cos( clock.getElapsedTime() ) * 0.1;
+  })
   return <>
-  <Svg fillMaterial={{ wireframe: false }} position={[-3, 1.5, 2]} rotation={[0, 1.2, 0]} scale={0.005} src="/WEBSITE.svg" strokeMaterial={{ wireframe: false }}/>
-  <Svg fillMaterial={{ wireframe: false }} position={[-0.2, 1.5, 2]} rotation={[0, 0, 0]} scale={0.005} src="/APPS.svg" strokeMaterial={{ wireframe: false }}/>
-  <Svg fillMaterial={{ wireframe: false }} position={[2.3, 1.4, 2]} rotation={[0, -1.2, 0]} scale={0.005} src="/WEB3.svg" strokeMaterial={{ wireframe: false }}/>
-</>
+    <Svg ref={ref} fillMaterial={{ wireframe: false }} position={props[0].position} rotation={props[0].rotation} scale={0.005} src={props[0].url} strokeMaterial={{ wireframe: false }}/>
+  </>
 }
-
-
-
 
 export default function PortfolioViewer () {
     
@@ -242,10 +249,13 @@ export default function PortfolioViewer () {
                         metalness={0.5}
                     />
                 </mesh>
-            <Texts/>
+            {textsData.map((props) => <>
+            <Texts {...props} /> 
+            </>
+            /* prettier-ignore */
+            )}
             </group>
             <Environment preset="city"  blur={1} />
-
         </Canvas>
     )
 }
