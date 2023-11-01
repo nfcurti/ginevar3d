@@ -13,16 +13,12 @@ export default function App() {
   const [allowScroll, setAllowScroll] = useState(false)
 
 
-  
-  setTimeout(() => {
-    setAllowScroll(true)
-  }, "2000");
 
   return (
     <main className={allowScroll? "overflow-hidden":"overflow-auto	"}>
         <div>
           <IntroViewer/>
-          {allowScroll? <PortfolioViewer/>:""}
+          <PortfolioViewer/>
         </div>
     </main>
   )

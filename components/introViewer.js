@@ -1,20 +1,29 @@
 import * as THREE from 'three'
 import React, { Suspense, useEffect, useState, useRef  } from 'react'
 import { Canvas , useFrame, } from '@react-three/fiber'
-import { Text, Line, Loader ,PointMaterial  } from '@react-three/drei'
-
+import { Text, Line, Loader , Stars, Sparkles  } from '@react-three/drei'
+import gsap from 'gsap'
 import { Overlay } from "/components/overlays"
 const menuItems = ['Work', 'About', 'Jobs', 'Contact'];
 const clock = new THREE.Clock()
 
 
-
 function VideoText(props) {
   const [video] = useState(() => Object.assign(document.createElement('video'), { src: '/drei.mp4', crossOrigin: 'Anonymous', loop: true, muted: true }))
+
   useEffect(() => void video.play(), [video])
+
+  const ref = React.useRef()
+
+  useFrame(()=>{
+    ref.current.position.y = 0.5+Math.cos( clock.getElapsedTime() ) * 0.1;
+  })
+  function moveText(){
+    gsap.to(ref.current.position, { duration: 30, x: 300 });
+  }
   
   return (
-    <Text font="/sf/SFCSB.ttf" fontSize={0.8} letterSpacing={0.05}  {...props}>
+    <Text onClick={(e) => moveText()}    ref={ref} font="/sf/SFCSB.ttf" fontSize={0.8} letterSpacing={0.05}  {...props}>
       Ginevar Labs_
       <meshBasicMaterial toneMapped={false} opacity={1} >
         <videoTexture attach="map" args={[video]} encoding={THREE.sRGBEncoding} />
@@ -45,7 +54,7 @@ function Triangles() {
 
     let upperTriangle = new THREE.BufferGeometry()
     let lowerTriangle = new THREE.BufferGeometry()
-    const material = new THREE.MeshBasicMaterial( { color: 0x191A1F} );
+    const material = new THREE.MeshBasicMaterial( { color: 0x191920} );
     
 
     useFrame(() => {
@@ -150,10 +159,11 @@ function Borders(){
 }
 
 export default function IntroViewer() {
-    
+
   return (
     <div style={{position:"relative"}}>
     <Canvas style={{height:"100vh", backgroundColor:"white"}} concurrent="true" gl={{ alpha: false }} pixelratio={[1, 1.5]} camera={{ fov: 15 }}>
+        <Stars radius={100} depth={50} count={100000} factor={4} saturation={0} fade speed={1} />
         <color attach="background" args={['black']} />
         <Suspense fallback={null}>
           <group position={[1, -1, 0]}>
@@ -166,7 +176,7 @@ export default function IntroViewer() {
             <Triangles/>
         </group>
     </Canvas>
-            <Overlay/>
+    <Overlay/>
     <Loader />
     </div>
   )
