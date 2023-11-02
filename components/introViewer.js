@@ -177,7 +177,6 @@ export default function IntroViewer() {
             <Triangles/>
         </group>
     </Canvas>
-    <Overlay/>
     <Loader />
     </div>
   )

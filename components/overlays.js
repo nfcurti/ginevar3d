@@ -1,31 +1,35 @@
 
 import React,{ useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import { motion } from "framer-motion"
 
 
 export function Overlay() {
   const [hovered, setHovered] = useState(false)
 
-  
 
   useEffect(()=>{
     
     function startAnimation(){
       var craftingObject = document.getElementById('crafting');
-      var bubbleObject = document.getElementById('bubble');
       var addsObject = document.getElementById('adds');
       var moreObject = document.getElementById('moreText');
+      var herotext = document.getElementById('moreText');
       gsap.fromTo(craftingObject, { opacity: 0, scale:0 }, { scale:1, opacity: 1, duration: 1, delay:3, rotation: 360*5, transformOrigin: "50% 50%" });
-      gsap.fromTo(bubbleObject, { opacity: 0, scale:0 }, { scale:1, opacity: 1, duration: 1, delay:3, rotation: 360*5, transformOrigin: "50% 50%"  });
       gsap.fromTo(addsObject, { opacity: 0}, {opacity: 1, duration: 1, delay:3});
+      gsap.fromTo(moreObject, { opacity: 0}, {opacity: 1, duration: 1, delay:3});
+      gsap.fromTo(herotext, { opacity: 0}, {opacity: 1, duration: 1, delay:3});
      
-    }
-
+    } 
+    
 
     startAnimation()
   }, [])
   return (
-    <><div id='adds' onPointerEnter={() => {setHovered(true)}} onPointerLeave={() => setHovered(false)} style={{fontFamily:""}}>
+    <>
+  
+
+      <div id='adds'  style={{fontFamily:""}}>
         <div  style={{ position: 'absolute', top: 40, right: 160, fontSize: '15px', textAlign: 'right', fontFamily:'SFCS' }}>
           MADE IN 
           <br />
@@ -36,31 +40,22 @@ export function Overlay() {
           <br />
           31/10/2023
         </div>
-        </div>
+      </div>
+
       <svg style={{ position: 'absolute', right: 40, top: '50%' }} width="54" height="23" viewBox="0 0 54 23" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line y1="1.5" x2="54" y2="1.5" stroke="black" strokeWidth="3" />
         <line y1="11.5" x2="54" y2="11.5" stroke="black" strokeWidth="3" />
         <line y1="21.5" x2="54" y2="21.5" stroke="black" strokeWidth="3" />
       </svg>
-      <div id='crafting' style={{ position: 'absolute', bottom: 70, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", display:"none" }}>
-        CRAFTING DIGITAL EXPERIENCES
-        <br />
-        THROUGH STORYTELLING.
-        <br />
-        <br />
-        <div style={{ position: 'relative', marginTop: 10, display: 'inline-block' }}>
-          <a style={{ fontSize: '15px', fontWeight: 600, letterSpacing: 2 }} href="https://github.com/pmndrs/drei#caustics">
-            CONTACT
-          </a>
-          <div style={{ marginTop: 6, height: 2.5, width: '100%', background: '#3e3e3d' }} />
-        </div>
-        <br />
-      </div>
-      <div id='herotext' className='herot' style={{ position: 'absolute', bottom: 50, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
-              <svg width="800" height="160">.
-                <text x="0" y="120" 	>CRAFTING DIGITAL EXPERIENCES</text>
-                <text x="0" y="270" >THROUGH STORYTELLING.</text>
+
+      <div id='crafting' style={{ position: 'absolute', top: 70, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
+              <svg width="800" height="160" className='mt-[-1em]'>.
+                <text x="400" y="100" 	>CRAFTING DIGITAL EXPERIENCES</text>
+                <text x="400" y="270" >THROUGH STORYTELLING.</text>
               </svg>
+      </div>
+      
+      <div id='herotext' className='herot' style={{ position: 'absolute', bottom: 50, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", }}>
               <div className="wrapper_contact ">
                 <a id='contactButton ' className="cta " href="#">
                   <span>CONTACT</span>
@@ -75,20 +70,36 @@ export function Overlay() {
                   </span> 
                 </a>
             </div>
-        </div>
-      <div id='moreText' className='herot' style={{ position: 'absolute', bottom: 150, right: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
-        <div class="line">
-          <span>WE ARE A TEAM OF DESIGNERS, DEVELOPERS AND CREATIVE ENGINEERS WITH OVER 25 YEARS OF CUMULATIVE EXPERIENCE.</span>
-        </div>
-        <div class="line">
-          <span>IN 2023 WE FOUNDED GINEVAR TO BRING OUR COMMON VISION TO LIFE </span>
-        </div>
-        <div class="line">
-          <span>WE ARE READY, ARE YOU?</span>
-        </div>
+      </div>
+      
+      <div id='moreText' className='chamuyo' style={{ position: 'absolute', bottom: -175, right: 350, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} class="line">
+          <span>WE ARE A TEAM OF DEVELOPERS  </span>
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} class="line">
+          <span>AND CREATIVE ENGINEERS </span>
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} class="line">
+          <span> WITH OVER 25 YEARS </span>
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} class="line mb2">
+          <span>OF CUMULATIVE EXPERIENCE.</span>
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} class="line">
+          <span>IN 2023 WE FOUNDED GINEVAR </span>
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} class="line">
+          <span>TO BRING OUR COMMON VISION TO LIFE </span>
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} class="line">
+          <span className='sp'>WE ARE READY, ARE YOU?</span>
+        </motion.div>
       </div>
       <style>
         {` 
+          .line{
+            font-size:2em
+          }
           .wrapper_contact {
             display: flex;
             justify-content: center;
@@ -97,17 +108,17 @@ export function Overlay() {
             right: 10;
             scale:1
           }
-        text {
-            font-size: 8rem;
-            scale:0.2;
-            stroke: #FFF133;
-            stroke-width: 1.5px;
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            fill: #FFF133;
-            animation: dash 5s ease-out alternate infinite;
-            
-          }
+          text {
+              font-size: 8rem;
+              scale:0.2;
+              stroke: #FFF133;
+              stroke-width: 1.5px;
+              stroke-dasharray: 1000;
+              stroke-dashoffset: 1000;
+              fill: #FFF133;
+              animation: color_text 0.01s ease-out  infinite;
+              
+            }
           @keyframes dash {
             from {
               stroke-dashoffset: 1000;
@@ -118,12 +129,21 @@ export function Overlay() {
               fill-opacity:1
             } 
           }
+
+          @keyframes color_text {
+            0% {
+                color: #FFF133;
+            }
+            50% {
+              color: white;
+            }
+            100% {
+              color: #FFF133;
+            }
+        }
           
           `}
       </style>
-      <div id='bubble'  style={{ position: 'absolute', bottom: 70, right: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
-        <img src="/bubblecomic2.svg" alt="bubbols" />
-      </div>
     </>
   )
 }

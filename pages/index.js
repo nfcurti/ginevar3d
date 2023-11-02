@@ -1,54 +1,21 @@
 
 import React, { Suspense, useEffect, useState  } from 'react'
-import Transition from "/components/transition"
 import PortfolioViewer from "/components/portfolioViewer"
 import IntroViewer from "/components/introViewer"
 import { gsap } from "gsap/dist/gsap";
 import { TweenMax, Power2, TimelineMax, Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+import { Overlay } from "/components/overlays"
 gsap.registerPlugin(ScrollTrigger);
 
+function Logo(){
+  return <img className="absolute top-5 start-10 w-[5em]" src="\gllogolight.svg"/>
+}
 
-
-
-export default function App() {
-  const [allowScroll, setAllowScroll] = useState(false)
-  const [tab, setTab] = useState(0)
-  useEffect(()=>{
-    const $img2 = document.querySelector('.image2');
-    const $logo = document.querySelector('.transition__logo');
-    const $frameBlack = document.querySelector('.page-transition__black');
-    const $frameRed = document.querySelector('.page-transition__red');
-    const $button = document.querySelector('.buttontr');
-  
-    let tltransition = new TimelineMax({paused:true})
-      .fromTo($frameRed , 2.2, {scaleX: 0},{scaleX: 1, transformOrigin:'left', ease: Power4.easeInOut},)
-      .fromTo($frameBlack , 2.2, {scaleX: 0},{scaleX: 1, transformOrigin:'left', ease: Power4.easeInOut},.2)
-      .fromTo($logo , 1.6, {xPercent: -100, autoAlpha:0 },{xPercent: 0, autoAlpha:1, ease: Power4.easeInOut},.7)
-      .set($frameRed, {scaleX:0})
-      .set($img2, {autoAlpha:0})
-      .to($frameBlack , 2.2, {scaleX: 0, transformOrigin:'right', ease: Power4.easeInOut})
-      .to($logo , .2, {autoAlpha:0 },'-=1.2')
-
-      $button.addEventListener('click', () => {
-        tltransition.play(0);
-        setTimeout(()=>{
-          setTab(1)
-        }, 2000)
-      });
-
-  })
-
-  return (
-    <main className={allowScroll? "overflow-hidden":"overflow-auto	"}>
-        <div className=''>
-        <IntroViewer/>
-        <div id="portf">
-          <PortfolioViewer />
-        </div>
-        </div>
-        <div>
+function Transition(){
+  return <>
+    <div>
           <div class="page-transition">
               <div class="page-transition__red"></div>
               <div class="page-transition__black"></div>
@@ -99,14 +66,13 @@ export default function App() {
             position: absolute;
             top: 1.5em;
             right: 18em;
-            scale:1
+            scale:1;
           }
 
           .cta {
               display: flex;
               padding: 10px 45px;
               text-decoration: none;
-              font-family: 'SFCS', sans-serif;
               font-size: 40px;
               color: white;
               background: #191920;
@@ -201,7 +167,7 @@ export default function App() {
               top: 0;
               height: 100vh;
               width: 100vw;
-              background: #191920;
+              background: #FFF133;
             }
             .transition__logo {
               text-transform: uppercase;
@@ -232,7 +198,50 @@ export default function App() {
           `}
 
           </style>
-        </div>
+    </div>
+  </>
+}
+
+
+export default function App() {
+  const [allowScroll, setAllowScroll] = useState(false)
+  const [animationloaded, setAnimationLoaded] = useState(false)
+  const [tab, setTab] = useState(0)
+  useEffect(()=>{
+    const $img2 = document.querySelector('.image2');
+    const $logo = document.querySelector('.transition__logo');
+    const $frameBlack = document.querySelector('.page-transition__black');
+    const $frameRed = document.querySelector('.page-transition__red');
+    const $button = document.querySelector('.buttontr');
+  
+    let tltransition = new TimelineMax({paused:true})
+      .fromTo($frameRed , 2.2, {scaleX: 0},{scaleX: 1, transformOrigin:'left', ease: Power4.easeInOut},)
+      .fromTo($frameBlack , 2.2, {scaleX: 0},{scaleX: 1, transformOrigin:'left', ease: Power4.easeInOut},.2)
+      .fromTo($logo , 1.6, {xPercent: -100, autoAlpha:0 },{xPercent: 0, autoAlpha:1, ease: Power4.easeInOut},.7)
+      .set($frameRed, {scaleX:0})
+      .set($img2, {autoAlpha:0})
+      .to($frameBlack , 2.2, {scaleX: 0, transformOrigin:'right', ease: Power4.easeInOut})
+      .to($logo , .2, {autoAlpha:0 },'-=1.2')
+
+      $button.addEventListener('click', () => {
+        tltransition.play(0);
+        setTimeout(()=>{
+          setTab(1)
+        }, 2000)
+      });
+
+
+  })
+
+  return (
+    <main className={allowScroll? "overflow-hidden":"overflow-auto	"}>
+
+      <IntroViewer/>
+      <PortfolioViewer />
+
+      <Transition/>
+      <Overlay id="overlays"/>
+      <Logo/>
     </main>
   )
 }
