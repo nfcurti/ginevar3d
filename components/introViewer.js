@@ -4,6 +4,7 @@ import { Canvas , useFrame, } from '@react-three/fiber'
 import { Text, Line, Loader , Stars, Sparkles  } from '@react-three/drei'
 import gsap from 'gsap'
 import { Overlay } from "/components/overlays"
+import { Value } from 'sass'
 const menuItems = ['Work', 'About', 'Jobs', 'Contact'];
 const clock = new THREE.Clock()
 
