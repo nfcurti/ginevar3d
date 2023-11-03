@@ -2,9 +2,11 @@
 import React, { Suspense, useEffect, useState  } from 'react'
 import PortfolioViewer from "/components/portfolioViewer"
 import IntroViewer from "/components/introViewer"
+import ParallaxText from "/components/parallaxText"
 import { gsap } from "gsap/dist/gsap";
 import { TweenMax, Power2, TimelineMax, Power4 } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { motion, animate, scroll, useMotionValueEvent, useScroll, useTransform  } from "framer-motion"
 
 import { Overlay } from "/components/overlays"
 gsap.registerPlugin(ScrollTrigger);
@@ -202,6 +204,20 @@ function Transition(){
   </>
 }
 
+function ContentSection(){
+  const { scrollYProgress } = useScroll();
+
+  const height = useTransform(scrollYProgress, [0.3296,0.5424], ["50vh", "100vh"])
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log(scrollYProgress)
+  })
+
+  return <motion.div id='contentWrapper' style={{height}} className='relative h-[50vh] bg-[#08080D]'>
+  <ParallaxText id="parallax"/>
+  </motion.div>
+}
+
 
 export default function App() {
   const [allowScroll, setAllowScroll] = useState(false)
@@ -237,8 +253,10 @@ export default function App() {
     <main className={allowScroll? "overflow-hidden":"overflow-auto	"}>
 
       <IntroViewer/>
+      <motion.div>
+        <ContentSection/>
+      </motion.div>
       <PortfolioViewer />
-
       <Transition/>
       <Overlay id="overlays"/>
       <Logo/>

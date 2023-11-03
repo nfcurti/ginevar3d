@@ -1,14 +1,19 @@
 
 import React,{ useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import { motion } from "framer-motion"
+import { motion, scroll, animate, useScroll  } from "framer-motion"
 
 
 export function Overlay() {
   const [hovered, setHovered] = useState(false)
+  const { scrollYProgress } = useScroll();
 
 
   useEffect(()=>{
+    console.log(scrollYProgress) 
+
+    
+    scroll( animate("#moreText", {transform: ["scale(1)", "rotate(-10deg) scale(2)"] }))
     
     function startAnimation(){
       var craftingObject = document.getElementById('crafting');
@@ -21,7 +26,6 @@ export function Overlay() {
       gsap.fromTo(herotext, { opacity: 0}, {opacity: 1, duration: 1, delay:3});
      
     } 
-    
 
     startAnimation()
   }, [])
@@ -72,7 +76,11 @@ export function Overlay() {
             </div>
       </div>
       
-      <div id='moreText' className='chamuyo' style={{ position: 'absolute', bottom: -175, right: 350, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
+      <motion.div 
+      id='moreText' 
+      className='chamuyo' 
+      style={{ position: 'absolute', bottom: -175, right: 350, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}
+      >
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} class="line">
           <span>WE ARE A TEAM OF DEVELOPERS  </span>
         </motion.div>
@@ -94,7 +102,7 @@ export function Overlay() {
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} class="line">
           <span className='sp'>WE ARE READY, ARE YOU?</span>
         </motion.div>
-      </div>
+      </motion.div>
       <style>
         {` 
           .line{
