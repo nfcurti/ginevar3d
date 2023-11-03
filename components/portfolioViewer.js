@@ -76,9 +76,9 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
       ref={ref}
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.uuid))}
       onPointerMissed={() => setLocation('/')}>
-      {images.map((props) => <>
+      {images.map((props) => 
       <Frame key={props.url} {...props} /> 
-      </>
+      
       /* prettier-ignore */
       )}
     </group>
@@ -176,7 +176,6 @@ function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() 
   useEffect(() => {
     clicked.current = ref.current.getObjectByProperty( 'uuid' , params?.id )
     if (clicked.current) {
-      console.log(activeId)
       clicked.current.parent.updateWorldMatrix(true, true)
       //clicked.current.parent.localToWorld(p.set(3,0,1.8))
       
@@ -200,10 +199,8 @@ function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() 
         setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.uuid);
       }}
       onPointerMissed={() => setLocation('/')}>
-      {images_desktop.map((props) => <>
-      <Macbook onClick={()=>setActiveId(props)} key={props.url} {...props} /> 
-      </>
-      /* prettier-ignore */
+      {images_desktop.map((props) =>
+      <Macbook key={props.url}  onClick={()=>setActiveId(props)} {...props} /> 
       )}
     </group>
   )
@@ -212,7 +209,6 @@ function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() 
 //Textos
 function Texts (...props ){
   const ref = React.useRef()
-  console.log(props[0].position)
 
   
   useFrame(()=>{

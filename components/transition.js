@@ -32,12 +32,12 @@ export default function Transition(props) {
 
   return (
     <div>
-      <div class="page-transition">
-          <div class="page-transition__red"></div>
-          <div class="page-transition__black"></div>
-          <img class="transition__logo" src='gllogolight.svg'/>
+      <div className="page-transition">
+          <div className="page-transition__red"></div>
+          <div className="page-transition__black"></div>
+          <img className="transition__logo" src='gllogolight.svg'/>
       </div>
-      <button class='buttontr' id="button">TRANSITION</button>     
+      <button className='buttontr' id="button">TRANSITION</button>     
       <style>{`
         .page-transition__black {
           position: absolute;
