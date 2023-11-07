@@ -18,8 +18,8 @@ export function Overlay() {
       var craftingObject = document.getElementById('crafting');
       var addsObject = document.getElementById('adds');
       var moreObject = document.getElementById('moreText');
-      var herotext = document.getElementById('moreText');
-      gsap.fromTo(craftingObject, { opacity: 0, scale:0 }, { scale:1, opacity: 1, duration: 1, delay:3, rotation: 360*5, transformOrigin: "50% 50%" });
+      var herotext = document.getElementById('herotext');
+      gsap.fromTo(craftingObject, { opacity: 0}, {opacity: 1, duration: 1, delay:3});
       gsap.fromTo(addsObject, { opacity: 0}, {opacity: 1, duration: 1, delay:3});
       gsap.fromTo(moreObject, { opacity: 0}, {opacity: 1, duration: 1, delay:3});
       gsap.fromTo(herotext, { opacity: 0}, {opacity: 1, duration: 1, delay:3});

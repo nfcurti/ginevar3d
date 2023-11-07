@@ -44,9 +44,9 @@ const images_desktop = [
 ]
 
 const textsData = [
-   { position: [-3, 1.5, 2], rotation: [0, 1.2, 0], url:'/WEBSITE.svg'  },
-   { position: [-0.2, 1.5, 2], rotation: [0, 0, 0], url: '/APPS.svg' },
-   { position: [2.3, 1.4, 2], rotation: [0, -1.2, 0], url: '/WEB3.svg' },
+   { _id:1,position: [-3, 1.5, 2], rotation: [0, 1.2, 0], url:'/WEBSITE.svg'  },
+   { _id:2,position: [-0.2, 1.5, 2], rotation: [0, 0, 0], url: '/APPS.svg' },
+   { _id:3,position: [2.3, 1.4, 2], rotation: [0, -1.2, 0], url: '/WEB3.svg' },
 ]
 
 
@@ -219,6 +219,17 @@ function Texts (...props ){
   </>
 }
 
+function TextsFrame(...props){
+  return (
+    <group>
+      {textsData.map((props) => <>
+                <Texts key={props.url} {...props} /> 
+                </>
+                )}
+    </group>
+  )
+}
+
 export default function PortfolioViewer () {
     
 
@@ -245,11 +256,7 @@ export default function PortfolioViewer () {
                         metalness={0.5}
                     />
                 </mesh>
-            {textsData.map((props) => <>
-            <Texts {...props} /> 
-            </>
-            /* prettier-ignore */
-            )}
+                <TextsFrame/>
             </group>
             <Environment preset="city"  blur={1} />
         </Canvas>
