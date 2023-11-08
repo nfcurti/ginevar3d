@@ -32,7 +32,7 @@ export function Overlay() {
     <>
   
 
-      <div id='adds'  style={{fontFamily:""}}>
+      <div id='adds' className='hidden md:block' >
         <div  style={{ position: 'absolute', top: 40, right: 160, fontSize: '15px', textAlign: 'right', fontFamily:'SFCS' }}>
           MADE IN 
           <br />
@@ -51,16 +51,16 @@ export function Overlay() {
         <line y1="21.5" x2="54" y2="21.5" stroke="black" strokeWidth="3" />
       </svg>
 
-      <div id='crafting' style={{ position: 'absolute', top: 70, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
+      <div id='crafting' className='hidden md:block' style={{ position: 'absolute', top: 70, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
               <svg width="800" height="160" className='mt-[-1em]'>.
                 <text x="400" y="100" 	>CRAFTING DIGITAL EXPERIENCES</text>
                 <text x="400" y="270" >THROUGH STORYTELLING.</text>
               </svg>
       </div>
       
-      <div id='herotext' className='herot' style={{ position: 'absolute', bottom: 50, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", }}>
+      <div id='herotext' className='hidden md:block' style={{ position: 'absolute', bottom: 50, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", }}>
               <div className="wrapper_contact ">
-                <a id='contactButton ' className="cta " href="#">
+                <a id='contactButton ' className="cta flex" href="#">
                   <span>CONTACT</span>
                   <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

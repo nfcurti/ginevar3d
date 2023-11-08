@@ -1,10 +1,7 @@
 import * as THREE from 'three'
 import React, { Suspense, useEffect, useState, useRef  } from 'react'
-import { Canvas , useFrame, } from '@react-three/fiber'
-import { Text, Line, Loader , Stars, Sparkles  } from '@react-three/drei'
-import gsap from 'gsap'
 const clock = new THREE.Clock()
-import { motion, animate, scroll, useMotionValueEvent, useScroll, useTransform, useInView  } from "framer-motion"
+import { motion, useInView  } from "framer-motion"
 import Lottie from "lottie-react";
 import coolAnimation from "/public/coolAnimation.json";
 

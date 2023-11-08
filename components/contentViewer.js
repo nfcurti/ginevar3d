@@ -13,8 +13,10 @@ export default function ContentViewer(){
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
   })
 
-  return <motion.div id='contentWrapper' style={{height}} className='relative h-[50vh] bg-[#08080D] overflow-hidden'>
-  <Lottie style={{fill:"#FFF133", width:"50%"}}  animationData={coolAnimation} />
-  <ParallaxText id="parallax" />
+  return (
+  <motion.div id='contentWrapper' style={{height}} className='relative h-[50vh] bg-[#08080D] overflow-hidden'>
+    <Lottie style={{fill:"#FFF133", width:"50%"}}  animationData={coolAnimation} />
+    <ParallaxText id="parallax" />
   </motion.div>
+  )
 }

@@ -209,7 +209,6 @@ function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() 
 //Textos
 function Texts (...props ){
   const ref = React.useRef()
-
   
   useFrame(()=>{
     ref.current.position.y = 1.5+Math.cos( clock.getElapsedTime() ) * 0.1;
@@ -222,9 +221,8 @@ function Texts (...props ){
 function TextsFrame(...props){
   return (
     <group>
-      {textsData.map((props) => <>
-                <Texts key={props.url} {...props} /> 
-                </>
+      {textsData.map((props, index) => 
+                <Texts key={index} {...props} /> 
                 )}
     </group>
   )

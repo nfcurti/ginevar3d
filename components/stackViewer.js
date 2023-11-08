@@ -39,87 +39,73 @@ export default function SmoothScroll(){
   const spring = useSpring(transform, physics)
 
   return (
-    <>
-      <div className="scroll-container">
-        <motion.section
-          ref={scrollRef}
-          style={{ x: spring }}
-          className="thumbnails-container"
-        >
-          <div className="thumbnails">
-            <div className="thumbnail" />
-            <div className="thumbnail" />
-            <div className="thumbnail" />
-            <div className="thumbnail" />
-            <div className="thumbnail" />
-            <div className="thumbnail" />
-          </div>
-        </motion.section>
+    <><div className="bodys">
+        <div className="scroll-container">
+          <motion.section
+            ref={scrollRef}
+            style={{ x: spring }}
+            className="thumbnails-container"
+          >
+            <div className="thumbnails">
+              <div className="thumbnail" />
+              <div className="thumbnail" />
+              <div className="thumbnail" />
+              <div className="thumbnail" />
+              <div className="thumbnail" />
+              <div className="thumbnail" />
+            </div>
+          </motion.section>
+        </div>
+        <div ref={ghostRef} style={{ height: scrollRange }} className="ghost" />
       </div>
-      <div ref={ghostRef} style={{ height: scrollRange }} className="ghost" />
       <style>
         {`
-        $black: #141414;
-        $yellowGreen: yellowgreen;
-        $yellow: yellow;
-        $royalblue: royalblue;
-        $magenta: magenta;
-        
-        *,
-        *:before,
-        *:after {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        
-        body {
-          background-color: $black;
-          overscroll-behavior: none;
-          -ms-overflow-style: none;
-          font-size: 16px;
-          text-rendering: optimizeLegibility;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-        }
-        
-        .scroll-container {
-          position: fixed;
-          left: 0;
-          right: 0;
-          will-change: transform;
-        
-          .ghost {
-            width: 100vw;
-          }
-        }
-        
-        .thumbnails-container {
-          position: relative;
-          height: 100vh;
-          width: max-content;
-          display: flex;
-          align-items: center;
-          padding: 0px 160px;
-          background-color: $black;
-          border: 40px solid $yellowGreen;
-        
-          .thumbnails {
-            position: relative;
-            display: flex;
-            border: 20px solid $yellow; 
-        
-        
-            .thumbnail {
-              height: 40vh;
-              width: 700px;
-              background-color: $royalblue;
-              border: 15px solid magenta;
+          $black: #141414;
+          $yellowGreen: yellowgreen;
+          $yellow: yellow;
+          $royalblue: royalblue;
+          $magenta: magenta;
+          
+          .scroll-container {
+            position: fixed;
+            left: 0;
+            right: 0;
+            will-change: transform;
+          
+            .ghost {
+              width: 100vw;
             }
           }
-        }
-        
-
+          
+          .thumbnails-container {
+            position: relative;
+            height: 100vh;
+            width: max-content;
+            display: flex;
+            align-items: center;
+            padding: 0px 160px;
+            background-color: $black;
+            border: 40px solid $yellowGreen;
+          
+            .thumbnails {
+              position: relative;
+              display: flex;
+              border: 20px solid $yellow; 
+          
+              & > *:not(:last-child) {
+                margin-right: 45px;
+              }
+          
+              .thumbnail {
+                height: 40vh;
+                width: 700px;
+                background-color: $royalblue;
+                border: 15px solid magenta;
+              }
+            }
+          }
+          
+          
         `}
       </style>
     </>

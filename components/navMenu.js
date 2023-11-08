@@ -23,8 +23,9 @@ export default function NavMenu(){
                 <div className="page-transition__black"></div>
                 <img className="transition__logo" src='gllogolight.svg'/>
             </div>
-            <div className="wrapper fixed">
-              <a id='portfolioButton' className="cta " href="#portf">
+
+            <div className="wrapper fixed ">
+              <a id='portfolioButton' className="cta hidden md:flex" href="#portf">
                 <span>PORTFOLIO</span>
                 <span>
                   <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -36,7 +37,7 @@ export default function NavMenu(){
                   </svg>
                 </span> 
               </a>
-              <a id='aboutButton' className="cta ml-8 buttontr" href="#">
+              <a id='aboutButton' className="cta ml-8 buttontr hidden md:flex" href="#">
                 <span>ABOUT</span>
                 <span>
                   <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -48,7 +49,7 @@ export default function NavMenu(){
                   </svg>
                 </span> 
               </a>
-              <a id='jobsButton ' className="cta ml-8 " href="#">
+              <a id='jobsButton ' className="cta ml-8 hidden md:flex" href="#">
                 <span>JOBS</span>
                 <span>
                   <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -72,7 +73,6 @@ export default function NavMenu(){
             }
   
             .cta {
-                display: flex;
                 padding: 10px 45px;
                 text-decoration: none;
                 font-size: 40px;
