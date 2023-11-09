@@ -7,7 +7,7 @@ import coolAnimationFull from "/public/coolAnimationFull.json";
 export default function FooterViewer(){
   const { scrollYProgress } = useScroll();
 
-  const height = useTransform(scrollYProgress, [0.9,1], ["75vh", "0vh"])
+  const height = useTransform(scrollYProgress, [0,1], ["75vh", "0vh"])
   const opacity = useTransform(scrollYProgress, [0.9,1], [1, 0])
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -18,13 +18,13 @@ export default function FooterViewer(){
 
   return (
   <div className='h-[50vh] overflow-hidden hidescrollbar'>
-    <motion.div id="section1" style={{height}} class="gsap-section">
+    <motion.div id="section1" style={{height}} className="gsap-section">
       <motion.div style={{opacity}}>
         <Lottie className="w-[100vh]  mx-auto"   animationData={coolAnimationFull} />
       </motion.div>
     </motion.div>
 
-    <div id="section2" class="gsap-section ">
+    <div id="section2" className="gsap-section ">
         <p>Footer</p>
     </div>
     <style>

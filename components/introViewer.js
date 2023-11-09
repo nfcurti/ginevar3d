@@ -177,7 +177,14 @@ export default function IntroViewer() {
             <Triangles/>
         </group>
     </Canvas>
-    <Loader />
+    <Loader 
+      suppressHydrationWarning={true} 
+      innerStyles={{width:"25vh", backgroundColor:"#08080D"}} 
+      barStyles={{backgroundColor:"#FFF133", width:"25vh"}} 
+      dataStyles={{fontFamily:"SFCSB", fontSize:"2em", display:"block", marginLeft:"0em"}} 
+      dataInterpolation={(p) => `${p.toFixed(2)}% Loaded`}
+      initialState={(active) => active} 
+    />
     </div>
   )
 }
