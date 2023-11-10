@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import React, { Suspense, useEffect, useState, useRef  } from 'react'
 const clock = new THREE.Clock()
-import { motion, useInView  } from "framer-motion"
+import { motion, useInView, useScroll, useTransform , useMotionValueEvent   } from "framer-motion"
 import Lottie from "lottie-react";
 import coolAnimation from "/public/coolAnimation.json";
 import {MotionPathPlugin} from "gsap/dist/MotionPathPlugin"; 
@@ -12,30 +12,37 @@ import gsap from 'gsap';
 export default function FeaturesViewer() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { scrollYProgress } = useScroll();
+
+  const scale = useTransform(scrollYProgress, [0.44,0.66], [1, 5])
+  const y = useTransform(scrollYProgress, [0.40,0.54], [0, 150])
+  const x = useTransform(scrollYProgress, [0.40,0.54], [500, 50])
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    console.log(latest)
+  })
+
+  
+
   useEffect(()=>{
+    
     gsap.from("#path", {
       drawSVG: "0%",
       duration: 3
     });
+    
     gsap.to("#target", {
       duration: 4,
       motionPath: {
-        path: "#mainPath",
-        align: "#mainPath",
-        alignOrigin: [0.5, 0.5],
-        autoRotate: true
+        path: [{x:0, y:0}, {x:500, y:0}]
       },
-      scale: 1.5,
-      yoyo: true,
-      repeat: -1,
-      repeatDelay: 0.75,
       ease: "power3.inOut"
     });
 
   })
 
   return (
-    <div style={{paddingTop:"5em"}} className='bg-[#08080D] max-h-[100vh] overscroll-scroll scrollContainer'>
+    <div style={{paddingTop:"5em"}} className='bg-[#08080D] '>
         <div ref={ref} className='flex w-full h-[100vh] text-white'>
             <motion.div  className='chamuyo ml-[4em] mt-[5em] absolute'  style={{ fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", transform: isInView ? "none" : "translateX(-200px)", opacity: isInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s" }} >
                     <motion.div className="line">
@@ -54,20 +61,94 @@ export default function FeaturesViewer() {
             <motion.div className="absolute right-0" style={{ transform: isInView ? "none" : "translateX(400px)", opacity: isInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s", marginLeft:"auto" }}>
                 <Lottie  style={{fill:"#FFF133", width:"100%", transform: "rotate(180deg)"}}  animationData={coolAnimation} />
             </motion.div>
-            <motion.div>
-            <svg className='mt-[30em] ml-[4em]' xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
-              <path id="mainPath" d="M293.28,226.82a69,69,0,0,0-69-69,76.71,76.71,0,0,0-76.71,76.71,85.23,85.23,0,0,0,85.23,85.24A94.7,94.7,0,0,0,327.47,225,105.22,105.22,0,0,0,222.25,119.8,116.92,116.92,0,0,0,105.33,236.71,129.91,129.91,0,0,0,235.24,366.62,144.34,144.34,0,0,0,379.58,222.28,160.37,160.37,0,0,0,219.2,61.9,178.2,178.2,0,0,0,41,240.1c0,109.35,88.65,198,198,198,121.5,0,220-98.5,220-220" />
-              
-              <image id="target" href="\gllogolight.svg" height="24" width="24" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" overflow="visible">
-              <path id="path" fill="none" stroke="#b606ff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" d="M0,0 L 0,150 L 200,0" />
-            </svg>
+            <motion.div className='absolute' >
+              <motion.p className='mt-[21em] absolute ml-[3.3em] text-[30px] w-[10em] text-[#FFF133]'>OUR RECIPE</motion.p>
+              <svg className='mt-[40em] absolute' xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 500 500">
+                <path className=''  id="mainPath" d="M0,25 L 500,25" />
+                <motion.image id="target" href="\gllogolight.svg" height="50" width="24" style={{x, scale, y}}/>
+              </svg>
             </motion.div>
+            <motion.div className='absolute mt-[45em] right-[40em]' >
+                <p className='text-[5em]'>INTERACTIVITY</p>
+                <p className='text-[5em]'>RELIABILITY</p>
+                <p className='text-[5em]'>STORYTELLING</p>
+            </motion.div>
+            
         </div>
-        <div className='h-[100vh] bg-red-500 '></div>
+        <div className='h-[100vh] bg-[#08080D] relative  pt-[15em]'>
+          <div class="wrappers float-left">
+            <img src="https://logosandtypes.com/wp-content/uploads/2020/11/Shopify.png" alt=""/>
+            <img src="https://docs.soliditylang.org/en/latest/_images/solidity_logo.svg" alt=""/>
+            <img src="https://www.drupal.org/files/project-images/nextjs-icon-dark-background.png" alt=""/>
+            <img src="https://global.discourse-cdn.com/standard17/uploads/threejs/original/2X/e/e4f86d2200d2d35c30f7b1494e96b9595ebc2751.png" alt=""/>
+            <img src="https://source.unsplash.com/random/600x600?roses" alt=""/>
+            <img src="https://source.unsplash.com/random/600x600?sky" alt=""/>
+            <img src="https://gsap.com/community/uploads/monthly_2020_03/tweenmax.png.cf27916e926fbb328ff214f66b4c8429.png" alt=""/>
+            <img src="https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png" alt=""/>
+            <img src="https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png" alt=""/>
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968326.png" alt=""/>
+          </div>
+          <div className='float-right w-[40%] mt-[10em]'>
+            <div className='text-[10em] text-center'>
+              Shopify
+            </div>
+            <div className='text-center text-[1.25em]'>
+              Used to partly or fully develop ecommerce site either as-is or using a NodeJS backend attached.
+            </div>
+          </div>
+        </div>
+        <div className='h-[10vh] bg-[#08080D] relative  pt-[15em]'>
+            <motion.div className='absolute' >
+              <motion.p className='mt-[21em] absolute ml-[3.3em] text-[30px] w-[10em] text-[#FFF133]'>OUR RECIPE</motion.p>
+              <svg className='mt-[40em] absolute' xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 500 500">
+                <path className=''  id="mainPath" d="M0,25 L 500,25" />
+                <motion.image id="target" href="\gllogolight.svg" height="50" width="24" style={{x, scale, y}}/>
+              </svg>
+            </motion.div>
+          
+        </div>
+            
         <style>
           {`
+          
+
+.wrappers {
+  position: relative;
+  flex-grow: 1;
+  margin-left:10em;
+  max-width: 1200px;
+  max-height: 1200px;
+  
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 2vmin;
+  justify-items: center;
+  align-items: center;
+}
+
+
+.wrappers img{
+  background:white;
+  position: relative;
+  z-index: 1;
+  grid-column: span 2;
+  max-width: 100%;
+  margin-bottom: -52%;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  transform: scale(1);
+  transition: all .25s;
+  
+  &:nth-child(7n + 1) {
+    grid-column: 2 / span 2;
+  }
+  
+  &:hover {
+    z-index: 2;
+    transform: scale(2);
+  }
+}
+
             #mainPath {
               fill: none;
               stroke: #FFF133;
