@@ -16,6 +16,14 @@
   font-family: 'SFCSE';
   src: url('/sf/SFCSE.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }  
+@font-face {
+  font-family: 'McLaren';
+  src: url('/sf/McLaren-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}  
+@font-face {
+  font-family: 'Inika';
+  src: url('/sf/Inika-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}  
 
 @tailwind base;
 @tailwind components;
