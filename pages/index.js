@@ -52,15 +52,16 @@ export default function App() {
         <FeaturesViewer/>
       </motion.div>
 
-      <motion.div>
+      <motion.div >
         <PortfolioViewer />
+        <span id="portfolio" className='hidden'></span>
       </motion.div>
 
       <motion.div>
         <FooterViewer/>
       </motion.div>
 
-      <NavMenu/>
+      <NavMenu />
       <Overlay/>
       <LogoViewer/>
     </main>

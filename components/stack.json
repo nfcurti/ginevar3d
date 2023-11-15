@@ -1,0 +1,45 @@
+{
+    
+    "stack": [
+        {
+          "title":"Shopify",
+          "desc": "Empowering websites to create seamless and scalable e-commerce experiences"
+        },
+        {
+          "title":"Solidity",
+          "desc": "Building secure and decentralized applications on the blockchain"
+        },
+        {
+          "title":"NextJS",
+          "desc": "React-based framework for building fast and scalable web applications with a focus on developer productivity"
+        },
+        {
+          "title":"ThreeJS",
+          "desc": "Engine for creating 3D graphics and interactive experiences in the browser"
+        },
+        {
+          "title":"",
+          "desc": ""
+        },
+        {
+          "title":"",
+          "desc": ""
+        },
+        {
+          "title":"Greensock",
+          "desc": "High-performance animation engine for creating smooth and engaging web animations with ease."
+        },
+        {
+          "title":"Framer",
+          "desc": "Improving and pushing the creation of fluid and interactive user interfaces"
+        },
+        {
+          "title":"NodeJS",
+          "desc": "Enabling server-side execution, facilitating scalable and efficient network applications"
+        },
+        {
+          "title":"Typescript",
+          "desc": "A statically typed superset of JavaScript that enhances developer productivity."
+        }
+  ]
+}

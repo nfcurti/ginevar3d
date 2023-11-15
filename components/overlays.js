@@ -32,7 +32,7 @@ export function Overlay() {
     <>
   
 
-      <div id='adds' className='hidden md:block' >
+      <div id='adds' className='hidden min-[1800px]:block' >
         <div  style={{ position: 'absolute', top: 40, right: 160, fontSize: '15px', textAlign: 'right', fontFamily:'SFCS' }}>
           MADE IN 
           <br />
@@ -51,9 +51,9 @@ export function Overlay() {
         <line y1="21.5" x2="54" y2="21.5" stroke="black" strokeWidth="3" />
       </svg>
 
-      <div id='crafting' className='hidden md:block' style={{ position: 'absolute', top: 70, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
+      <div id='crafting' className='hidden min-[1550px]:block' style={{ position: 'absolute', top: 70, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
               <svg width="800" height="160" className='mt-[-1em]'>.
-                <text x="400" y="100" 	>CRAFTING DIGITAL EXPERIENCES</text>
+                <text x="400" y="100" >CRAFTING DIGITAL EXPERIENCES</text>
                 <text x="400" y="270" >THROUGH STORYTELLING.</text>
               </svg>
       </div>
@@ -104,6 +104,7 @@ export function Overlay() {
       </motion.div>
       <style>
         {` 
+        
           .line{
             font-size:2em
           }

@@ -167,6 +167,7 @@ function Macbook({ ...props }) {
   )
 }
 
+
 function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
   const ref = useRef()
   const clicked = useRef()
