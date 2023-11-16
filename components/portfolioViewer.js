@@ -1,7 +1,8 @@
 import * as THREE from 'three'
 import React,{ useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { useCursor, MeshReflectorMaterial, CameraControls, Text, Environment, useGLTF, Svg, PerspectiveCamera  } from '@react-three/drei'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { useCursor, MeshReflectorMaterial, CameraControls, Text, Environment, useGLTF, Svg   } from '@react-three/drei'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { useRoute, useLocation } from 'wouter'
 import { easing } from 'maath'
 import getUuid from 'uuid-by-string'
@@ -44,7 +45,7 @@ const images_desktop = [
 ]
 
 const textsData = [
-   { _id:1,position: [-3, 1.5, 2], rotation: [0, 1.2, 0], url:'/WEBSITE.svg'  },
+   { _id:1,position: [-3, 1.5, 2], rotation: [0, 1.2, 0], url:'/WEBSITES (1).svg'  },
    { _id:2,position: [-0.2, 1.5, 2], rotation: [0, 0, 0], url: '/APPS.svg' },
    { _id:3,position: [2.3, 1.4, 2], rotation: [0, -1.2, 0], url: '/WEB3.svg' },
 ]
@@ -229,6 +230,23 @@ function TextsFrame(...props){
   )
 }
 
+function CameraController(...props){
+  const { camera, gl } = useThree();
+  useEffect(
+    () => {
+      const controls = new OrbitControls(camera, gl.domElement);
+      controls.enableZoom = false;
+      controls.minDistance = 3;
+      controls.maxDistance = 2000;
+      return () => {
+        controls.dispose();
+      };
+    },
+    [camera, gl]
+  );
+  return null;
+};
+
 export default function PortfolioViewer () {
     
 
@@ -257,6 +275,7 @@ export default function PortfolioViewer () {
                 </mesh>
                 <TextsFrame/>
             </group>
+            <CameraController/>
             <Environment preset="city"  blur={1} />
         </Canvas>
     )
