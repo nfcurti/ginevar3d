@@ -58,8 +58,8 @@ export function Overlay() {
               </svg>
       </div>
       
-      <div id='herotext' className='hidden md:block' style={{ position: 'absolute', bottom: 50, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", }}>
-              <div className="wrapper_contact ">
+      <div id='herotext' className=' min-[1800px]:left-[12em] min-[1800px]:bottom-[1em] max-[1800px]:bottom-[11em]' style={{ position: 'absolute', fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", }}>
+              <div className="wrapper_contact max-[1800px]:w-[100vw] max-[1800px]:right-0 max-[1800px]:left-0">
                 <a id='contactButton ' className="cta flex" href="#">
                   <span>CONTACT</span>
                   <span>
@@ -77,28 +77,28 @@ export function Overlay() {
       
       <motion.div 
       id='moreText' 
-      className='chamuyo' 
-      style={{ position: 'absolute', bottom: -175, right: 350, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}
+      className='chamuyo min-[680px]:bottom-[-175px] max-[680px]:bottom-[-325px] min-[680px]:text-[1em] min-[1800px]:right-[5em] max-[680px]:text-[0.6em] max-[650px]:p-8 max-[650px]:pt-16 max-[1800px]:left-0 max-[1800px]:right-0' 
+      style={{ position: 'absolute', fontFamily:"SFCSB", letterSpacing:"2px" }}
       >
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} className="line">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} className="line max-[1800px]:text-center ">
           <span>WE ARE A TEAM OF DEVELOPERS  </span>
         </motion.div>
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} className="line">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} className="line max-[1800px]:text-center">
           <span>AND CREATIVE ENGINEERS </span>
         </motion.div>
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} className="line">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} className="line max-[1800px]:text-center">
           <span> WITH OVER 25 YEARS </span>
         </motion.div>
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} className="line mb2">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} className="line mb2 max-[1800px]:text-center">
           <span>OF CUMULATIVE EXPERIENCE.</span>
         </motion.div>
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} className="line">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} className="line max-[1800px]:text-center">
           <span>IN 2023 WE FOUNDED GINEVAR </span>
         </motion.div>
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} className="line">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} className="line max-[1800px]:text-center">
           <span>TO BRING OUR COMMON VISION TO LIFE </span>
         </motion.div>
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} className="line">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:4} }} viewport={{ once: true }} className="line max-[1800px]:text-center">
           <span className='sp'>WE ARE READY, ARE YOU?</span>
         </motion.div>
       </motion.div>

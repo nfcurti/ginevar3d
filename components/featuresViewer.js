@@ -79,8 +79,8 @@ export default function FeaturesViewer() {
     <div style={{paddingTop:"5em"}} className='bg-[#08080D] overflow-hidden'>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"/>
 
-        <div ref={refTotal} className='flex w-full h-[100vh] text-white'>
-            <motion.div  className='chamuyo ml-[4%] text-center  mt-[5em] absolute'  style={{ fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", transform: isInView ? "none" : "translateX(-200px)", opacity: isInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s" }} >
+        <div ref={refTotal} className='flex w-full h-[65em] text-white'>
+            <motion.div  className='chamuyo max-[1050px]:w-[100%] max-[1050px]:p-[10px] min-[1050px]:ml-[4%] text-center mt-[5em] absolute'  style={{ fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", transform: isInView ? "none" : "translateX(-200px)", opacity: isInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s" }} >
                     <motion.div className="line">
                     <span>USING CUTTING EDGE </span>
                     </motion.div>
@@ -98,30 +98,30 @@ export default function FeaturesViewer() {
                 <Lottie  style={{fill:"#FFF133", width:"100%", transform: "rotate(180deg)"}}  animationData={coolAnimation} />
             </motion.div>
             <motion.div ref={refContent}  className='absolute' style={{transform: isContentInView ? "none" : "translateX(-200px)", opacity: isContentInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}} >
-              <motion.p className='mt-[21em] absolute ml-[3.3em] text-[30px] w-[10em] text-[#FFF133]'>OUR RECIPE</motion.p>
-              <svg className='mt-[40em] absolute' xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 500 500">
+              <motion.p className='mt-[21em] absolute md:ml-[3.3em] text-[30px] text-center w-[100vw] md:text-start md:w-[10em] text-[#FFF133]'>OUR RECIPE</motion.p>
+              <svg className='mt-[42em] absolute h-[400px] md:h-[800px]' xmlns="http://www.w3.org/2000/svg" width="1000" viewBox="0 0 500 500">
                 <path className=''  id="mainPath" d="M0,25 L 500,25" />
-                <motion.image id="target" href="\gllogolight.svg" height="50" width="24" style={{x, scale, y}}/>
+                <motion.image className="hidden md:block " id="target" href="\gllogolight.svg" height="50" width="24" style={{x, scale, y}}/>
               </svg>
             </motion.div>
-            <motion.div ref={refContent} className='absolute mt-[47.5em] right-[35em]' style={{transform: isContentInView ? "none" : "translateX(400px)", opacity: isContentInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
-                <p className='text-[4em]'>INTERACTIVITY</p>
-                <p className='text-[4em]'>RELIABILITY</p>
-                <p className='text-[4em]'>STORYTELLING</p>
+            <motion.div ref={refContent} className='absolute mt-[47.5em] w-[100%] md:w-[auto] max-[750px]:left-0 max-[750px]:right-0 md:right-[5em] lg:right-[10em] xl:right-[15em]' style={{transform: isContentInView ? "none" : "translateX(400px)", opacity: isContentInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
+                <p className='text-[3em] text-center md:text-start md:text-[4em]'>INTERACTIVITY</p>
+                <p className='text-[3em] text-center md:text-start  md:text-[4em]'>RELIABILITY</p>
+                <p className='text-[3em] text-center md:text-start  md:text-[4em]'>STORYTELLING</p>
             </motion.div>
             
         </div>
-        <div className='h-[71vh] bg-[#08080D] relative'>
+        <div className='h-[60em] bg-[#08080D] relative'>
           <div className='relative'>
-            <motion.div ref={refWorks}  className='absolute mt-[3em]' style={{transform: isWorksInView ? "none" : "translateX(400px)", opacity: isWorksInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
-                <motion.p className='mt-[22em] absolute ml-[3.3em] text-[30px] w-[10em] text-[#FFF133]'>SNIPPETS & WORKS</motion.p>
-                <svg className='mt-[42em] absolute' xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 500 500">
+            <motion.div ref={refWorks}  className='absolute mt-[5em] md:mt-[14em]' style={{transform: isWorksInView ? "none" : "translateX(400px)", opacity: isWorksInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
+                <motion.p className='mt-[21em] absolute md:ml-[3.3em] text-[30px] text-center w-[100vw] md:text-start md:w-[10em] text-[#FFF133]'>SNIPPETS & WORKS</motion.p>
+                <svg className='mt-[42em] absolute h-[400px] md:h-[800px]' xmlns="http://www.w3.org/2000/svg" width="1000"  viewBox="0 0 500 500">
                   <path className=''  id="mainPath" d="M0,25 L 500,25" />
-                  <motion.image style={{x:500}} id="target" href="\gllogolight.svg" height="50" width="24" />
+                  <motion.image className="hidden md:block" style={{x:500}} id="target" href="\gllogolight.svg" height="50" width="24" />
                 </svg>
             </motion.div>
           </div>
-          <div ref={refStack} className='relative flex'>
+          <div ref={refStack} className='relative min-[1750px]:flex'>
             <motion.div className="wrappers" style={{transform: isStackInView ? "none" : "translateX(-1000px)", opacity: isStackInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
               <img onMouseEnter={() => changeStack(0)} src="https://logosandtypes.com/wp-content/uploads/2020/11/Shopify.png" alt=""/>
               <img onMouseEnter={() => changeStack(1)} src="https://docs.soliditylang.org/en/latest/_images/solidity_logo.svg" alt=""/>
@@ -134,11 +134,11 @@ export default function FeaturesViewer() {
               <img onMouseEnter={() => changeStack(8)} src="https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png" alt=""/>
               <img onMouseEnter={() => changeStack(9)} src="https://cdn-icons-png.flaticon.com/512/5968/5968326.png" alt=""/>
             </motion.div>
-            <motion.div id='stackInfo' className='mt-[auto] w-[40%] ml-[1em] ' style={{transform: isStackInView ? "none" : "translateX(1000px)", opacity: isStackInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
-              <div className='text-[5em] text-start'>
+            <motion.div id='stackInfo' className='mt-[auto] max-[1750px]:w-[100%]   min-[1750px]:w-[40%] min-[1750px]:ml-[1em] ' style={{transform: isStackInView ? "none" : "translateX(1000px)", opacity: isStackInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
+              <div className='text-[5em] text-center min-[1750px]:text-start '>
                 {stack.stack[stackitem].title}
               </div>
-              <div className="text-start text-[1.25em] font-['Inter'] w-[75%]" >
+              <div className="text-center min-[1750px]:text-start text-[1.25em] font-['Inter'] min-[1750px]:w-[75%]" >
                 {stack.stack[stackitem].desc}
               </div>
             </motion.div>
@@ -218,10 +218,9 @@ export default function FeaturesViewer() {
             .wrappers {
               position: relative;
               flex-grow: 1;
-              margin-left:10em;
               max-width: 1200px;
               max-height: 1200px;
-              
+              padding:3em;
               display: grid;
               grid-template-columns: repeat(8, 1fr);
               grid-template-rows: repeat(4, 1fr);
