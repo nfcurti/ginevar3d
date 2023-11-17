@@ -61,7 +61,6 @@ export default function FeaturesViewer() {
 
   async function changeStack(index){
     
-    console.log(index)
     const sequence = [
       ["#stackInfo", { opacity: 0 }, { duration: 0.2 }],
       ["#stackInfo", { opacity: 1 }, { delay: stagger(0.1) }]

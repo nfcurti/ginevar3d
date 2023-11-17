@@ -14,7 +14,6 @@ function VideoText(props) {
 	const isMobile = useIsMobile();
 
 	useEffect(() => {
-		console.log('isMobile: ', isMobile);
 	}, [isMobile]);
 
   const [video] = useState(() => Object.assign(document.createElement('video'), { src: '/drei.mp4', crossOrigin: 'Anonymous', loop: true, muted: true }))
@@ -31,7 +30,7 @@ function VideoText(props) {
   }
   
   return (
-    <Text scale={isMobile? 0.5:1} onClick={(e) => moveText()}    ref={ref} font="/sf/SFCSB.ttf" fontSize={0.8} letterSpacing={0.05}  {...props}>
+    <Text scale={isMobile? 0.5:0.95} onClick={(e) => moveText()}    ref={ref} font="/sf/SFCSB.ttf" fontSize={0.8} letterSpacing={0.05}  {...props}>
       Ginevar Labs_
       <meshBasicMaterial toneMapped={false} opacity={1} >
         <videoTexture attach="map" args={[video]} encoding={THREE.sRGBEncoding} />
