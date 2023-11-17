@@ -18,6 +18,7 @@
     "@pmndrs/branding": "^0.0.8",
     "@react-three/drei": "^9.80.6",
     "@react-three/fiber": "^8.13.7",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/three": "^0.157.2",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",

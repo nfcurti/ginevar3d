@@ -65,9 +65,9 @@ export default function NavMenu(){
                   <span>
                     <div class="menu-container">
                       <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                        <line class="line-one" x1="25" y1="42" x2="75" y2="42" fill="none" stroke="#FFFFFF" stroke-miterLimit="10" stroke-width="4" />
-                        <line class="line-two" x1="25" y1="50" x2="75" y2="50" fill="none" stroke="#FFFFFF" stroke-miterLimit="10" stroke-width="4" />
-                        <line class="line-three" x1="25" y1="58" x2="75" y2="58" fill="none" stroke="#FFFFFF" stroke-miterLimit="10" stroke-width="4" />
+                        <line class="line-one" x1="25" y1="42" x2="75" y2="42" fill="none" stroke="#FFFFFF" strokeMiterlimit="10" strokeWidth="4" />
+                        <line class="line-two" x1="25" y1="50" x2="75" y2="50" fill="none" stroke="#FFFFFF" strokeMiterlimit="10" strokeWidth="4" />
+                        <line class="line-three" x1="25" y1="58" x2="75" y2="58" fill="none" stroke="#FFFFFF" strokeMiterlimit="10" strokeWidth="4" />
                       </svg>
                     </div>
                   </span> 

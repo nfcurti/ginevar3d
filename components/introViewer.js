@@ -1,15 +1,22 @@
 import * as THREE from 'three'
 import React, { Suspense, useEffect, useState, useRef  } from 'react'
 import { Canvas , useFrame, } from '@react-three/fiber'
-import { Text, Line, Loader , Stars, Sparkles  } from '@react-three/drei'
+import { Text, Line, Loader , Stars, Text3D   } from '@react-three/drei'
 import gsap from 'gsap'
 import { Overlay } from "/components/overlays"
 import { Value } from 'sass'
 const menuItems = ['Work', 'About', 'Jobs', 'Contact'];
+import useIsMobile from '/helpers/mobileHook.js';
 const clock = new THREE.Clock()
 
 
 function VideoText(props) {
+	const isMobile = useIsMobile();
+
+	useEffect(() => {
+		console.log('isMobile: ', isMobile);
+	}, [isMobile]);
+
   const [video] = useState(() => Object.assign(document.createElement('video'), { src: '/drei.mp4', crossOrigin: 'Anonymous', loop: true, muted: true }))
 
   useEffect(() => void video.play(), [video])
@@ -24,7 +31,7 @@ function VideoText(props) {
   }
   
   return (
-    <Text onClick={(e) => moveText()}    ref={ref} font="/sf/SFCSB.ttf" fontSize={0.8} letterSpacing={0.05}  {...props}>
+    <Text scale={isMobile? 0.5:1} onClick={(e) => moveText()}    ref={ref} font="/sf/SFCSB.ttf" fontSize={0.8} letterSpacing={0.05}  {...props}>
       Ginevar Labs_
       <meshBasicMaterial toneMapped={false} opacity={1} >
         <videoTexture attach="map" args={[video]} encoding={THREE.sRGBEncoding} />
@@ -167,7 +174,7 @@ export default function IntroViewer() {
         <Stars radius={100} depth={50} count={100000} factor={4} saturation={0} fade speed={1} />
         <color attach="background" args={['black']} />
         <Suspense fallback={null}>
-          <group position={[1, -1, 0]}>
+          <group position={[1.3, -1, 0]}>
             <VideoText position={[0, 0.5, -2.1]} />
           </group>
           <Intro/>

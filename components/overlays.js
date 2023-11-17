@@ -58,7 +58,7 @@ export function Overlay() {
               </svg>
       </div>
       
-      <div id='herotext' className=' min-[1800px]:left-[12em] min-[1800px]:bottom-[1em] max-[1800px]:bottom-[11em]' style={{ position: 'absolute', fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", }}>
+      <div id='herotext' className=' min-[1800px]:left-[12em] min-[1800px]:bottom-[1em] max-[1800px]:bottom-[7em]' style={{ position: 'absolute', fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px", }}>
               <div className="wrapper_contact max-[1800px]:w-[100vw] max-[1800px]:right-0 max-[1800px]:left-0">
                 <a id='contactButton ' className="cta flex" href="#">
                   <span>CONTACT</span>
