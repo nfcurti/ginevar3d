@@ -23,14 +23,6 @@ const images = [
   { position: [-1, 0, -0.35], rotation: [0, 0, 0], url: '/highlights.png' },
   { position: [1, 0, -0.35], rotation: [0, 0, 0], url: '/deliverly.png' },
   { position: [0, 0, -0.35], rotation: [0, 0, 0], url: '/tree.png' },
-  // Left
- //  { position: [-1.75, 0, 0.25], rotation: [0, Math.PI / 2.5, 0], url:'/sd.png'  },
- //  { position: [-2.15, 0, 1.5], rotation: [0, Math.PI / 2.5, 0], url: '/korca.png' },
- //  { position: [-2, 0, 2.75], rotation: [0, Math.PI / 2.5, 0], url: '/isovox.png' },
-  // Right
- //  { position: [1.75, 0, 0.25], rotation: [0, -Math.PI / 2.5, 0], url: `/Capture.png` },
-  // { position: [2.15, 0, 1.5], rotation: [0, -Math.PI / 2.5, 0], url: `/hdpunks.png` },
-  // { position: [2, 0, 2.75], rotation: [0, -Math.PI / 2.5, 0], url: `/alpaca.png` }
 ]
 
 const images_desktop = [

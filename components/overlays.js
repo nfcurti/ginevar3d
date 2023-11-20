@@ -54,7 +54,7 @@ export function Overlay() {
       <div id='crafting' className='hidden min-[1550px]:block' style={{ position: 'absolute', top: 70, left: 120, fontSize: '20px', fontFamily:"SFCSB", letterSpacing:"2px" }}>
               <svg width="800" height="160" className='mt-[-1em]'>.
                 <text x="400" y="100" >CRAFTING DIGITAL EXPERIENCES</text>
-                <text x="400" y="270" >THROUGH STORYTELLING.</text>
+                <text x="400" y="270" >THROUGH STORYTELLING</text>
               </svg>
       </div>
       

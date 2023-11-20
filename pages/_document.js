@@ -8,7 +8,9 @@ export default function Document() {
 
   return (
     <Html lang="en" >
-      <Head />
+      <Head>
+        <title>Ginevar Labs - Code that tells stories</title>
+      </Head>
       <body>
         <Main />
         <NextScript />

@@ -4,7 +4,7 @@ import { motion} from "framer-motion"
 
 
 function Logo(){
-  return <img className="absolute top-5 start-10 w-[5em]" src="\gllogolight.svg"/>
+  return <img alt="altlogo" className="absolute top-5 start-10 w-[5em]" src="\gllogolight.svg"/>
 }
 
 

@@ -19,8 +19,6 @@ export default function NavMenu(){
   
     return <>
       <motion.div id='buttonsWrapper' >
-            {menuOpened?
-            
             <motion.div 
             initial={{ opacity: menuOpened? 1:0, scale: menuOpened? 1:0 }}
             animate={{ opacity: menuOpened? 0:1, scale: menuOpened? 0:1 }}
@@ -30,9 +28,6 @@ export default function NavMenu(){
                 <div className="page-transition__black"></div>
                 <img className="transition__logo" src='gllogolight.svg'/>
             </motion.div>
-            :
-            <></>
-            }
 
             {menuOpened? 
             <motion.div 
@@ -40,9 +35,9 @@ export default function NavMenu(){
             animate={{ opacity: menuOpened? 1:0, scale: menuOpened? 1:0 }}
             transition={{ duration: 0.5 }}
             id='menuMobile' 
-            className="h-[100vh] w-[100vw] bg-[#FFF133] absolute top-0 flex justify-center z-10">
-              <div className='pt-[10em]'>
-                <a id='portfolioButton' className="cta flex mt-4 " href="#portfolio">
+            className="h-[100vh] w-[100vw] bg-[#08080D] items-center absolute top-0 flex justify-center z-10">
+              <div className=''>
+                <a  className="cta flex mt-4 " href="#portfolio">
                   <span>PORTFOLIO</span>
                   <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
