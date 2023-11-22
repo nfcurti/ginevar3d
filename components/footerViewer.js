@@ -27,7 +27,7 @@ export default function FooterViewer(){
             <Image width={50} height={50} alt="logofooter" className="p-8 absolute w-[2em] left-[auto] md:left-[2em] md:top-[1em]" src="\gllogolight.svg"/>
           </div>
           <p className="hidden md:block absolute p-8 w-[17em] top-[1em] left-[32%] text-center max-[1200px]:text-start max-[1200px]:text-[0.5em] text-[0.75em]">CRAFTING DIGITAL EXPERIENCES THROUGH STORYTELLING.</p>
-          <ul className="socials left-0 right-0 p-8 absolute w-[auto] justify-center md:justify-start">
+          <ul className="socials left-0 right-0 p-8 bottom-[2em] absolute w-[auto] justify-center md:justify-start">
               <li><a href="#"><i className="fa-brands fa-instagram instagram"></i></a></li>
               <li><a href="#"><i className="fab fa-medium whatsapp"></i></a></li>
               <li><a href="#"><i className="fa-brands fa-linkedin twitter"></i></a></li>
