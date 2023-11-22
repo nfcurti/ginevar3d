@@ -3,6 +3,7 @@ import { motion, useMotionValueEvent, useScroll, useTransform  } from "framer-mo
 import Lottie from "lottie-react";
 import coolAnimationFull from "/public/coolAnimationFull.json";
 import LogoViewer from "/components/logoViewer"
+import Image from 'next/image'
 
 
 export default function FooterViewer(){
@@ -23,7 +24,7 @@ export default function FooterViewer(){
     <div id="section2" className="gsap-section relative h-[15em] md:h-[8em]">
         <motion.div className=''>
           <div className='flex justify-center'>
-            <img className="p-8 absolute w-[2em] left-[auto] md:left-[2em] md:top-[1em]" src="\gllogolight.svg"/>
+            <Image width={50} height={50} alt="logofooter" className="p-8 absolute w-[2em] left-[auto] md:left-[2em] md:top-[1em]" src="\gllogolight.svg"/>
           </div>
           <p className="hidden md:block absolute p-8 w-[17em] top-[1em] left-[32%] text-center max-[1200px]:text-start max-[1200px]:text-[0.5em] text-[0.75em]">CRAFTING DIGITAL EXPERIENCES THROUGH STORYTELLING.</p>
           <ul className="socials left-0 right-0 p-8 absolute w-[auto] justify-center md:justify-start">

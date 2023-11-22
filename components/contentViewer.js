@@ -1,6 +1,6 @@
-import React, { Suspense, useEffect, useState  } from 'react'
+import React from 'react'
 import ParallaxText from "/components/parallaxText"
-import { motion, useMotionValueEvent, useScroll, useTransform  } from "framer-motion"
+import { motion, useScroll, useTransform  } from "framer-motion"
 import Lottie from "lottie-react";
 import coolAnimation from "/public/coolAnimation.json";
 

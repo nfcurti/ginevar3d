@@ -12,9 +12,17 @@ import NavMenu from "/components/navMenu"
 import { Overlay } from "/components/overlays"
 
 export default function App() {
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [allowScroll, setAllowScroll] = useState(false)
   
   useEffect(()=>{
+    if(dataLoaded == false) {
+      setDataLoaded(true);
+      loadTransitions();
+    }
+  }, [dataLoaded])
+
+  const loadTransitions = async() => {
     const $logo = document.querySelector('.transition__logo');
     const $frameBlack = document.querySelector('.page-transition__black');
     const $frameRed = document.querySelector('.page-transition__red');
@@ -33,32 +41,40 @@ export default function App() {
         setTimeout(()=>{
         }, 2000)
       });
-
-
-  })
+  }
 
   return (
     <main className={allowScroll? "overflow-hidden":"overflow-auto	"}>
 
       <motion.div>
+
         <IntroViewer/>
+
       </motion.div>
 
       <motion.div>
+
         <ContentViewer/>
+
       </motion.div>
 
       <motion.div>
+        
         <FeaturesViewer/>
+
       </motion.div>
 
       <motion.div >
+
         <PortfolioViewer />
         <span id="portfolio" className='hidden'></span>
+
       </motion.div>
 
       <motion.div>
+        
         <FooterViewer/>
+
       </motion.div>
 
       <NavMenu />

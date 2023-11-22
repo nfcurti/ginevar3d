@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect, useState  } from 'react'
 import { gsap } from "gsap/dist/gsap";
 import { motion} from "framer-motion"
+import Image from 'next/image'
 
 export default function NavMenu(){
   const [menuOpened, setMenuOpened] = useState(false)
@@ -23,10 +24,10 @@ export default function NavMenu(){
             initial={{ opacity: menuOpened? 1:0, scale: menuOpened? 1:0 }}
             animate={{ opacity: menuOpened? 0:1, scale: menuOpened? 0:1 }}
             transition={{ duration: 0.5 }}
-             className="page-transition">
+            className="page-transition">
                 <div className="page-transition__red"></div>
                 <div className="page-transition__black"></div>
-                <img className="transition__logo" src='gllogolight.svg'/>
+                <Image className="transition__logo" width={0} height={0} alt='transitionlogo'  src='gllogolight.svg'/>
             </motion.div>
 
             {menuOpened? 

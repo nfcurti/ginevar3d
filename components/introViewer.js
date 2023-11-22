@@ -13,8 +13,6 @@ const clock = new THREE.Clock()
 function VideoText(props) {
 	const isMobile = useIsMobile();
 
-	useEffect(() => {
-	}, [isMobile]);
 
   const [video] = useState(() => Object.assign(document.createElement('video'), { src: '/drei.mp4', crossOrigin: 'Anonymous', loop: true, muted: true }))
 
@@ -159,38 +157,34 @@ function Borders(){
         <line visible={visible} ref={bordersMesh}  geometry={bottomborderGeometry} material={material}/>
         </>
       )
-    
-    
-
-    
 }
 
 export default function IntroViewer() {
 
   return (
     <div style={{position:"relative"}}>
-    <Canvas style={{height:"100vh", backgroundColor:"white"}} concurrent="true" gl={{ alpha: false }} pixelratio={[1, 1.5]} camera={{ fov: 15 }}>
-        <Stars radius={100} depth={50} count={100000} factor={4} saturation={0} fade speed={1} />
-        <color attach="background" args={['black']} />
-        <Suspense fallback={null}>
-          <group position={[1.3, -1, 0]}>
-            <VideoText position={[0, 0.5, -2.1]} />
+      <Canvas style={{height:"100vh", backgroundColor:"white"}} concurrent="true" gl={{ alpha: false }} pixelratio={[1, 1.5]} camera={{ fov: 15 }}>
+          <Stars radius={100} depth={50} count={100000} factor={4} saturation={0} fade speed={1} />
+          <color attach="background" args={['black']} />
+          <Suspense fallback={null}>
+            <group position={[1.3, -1, 0]}>
+              <VideoText position={[0, 0.5, -2.1]} />
+            </group>
+            <Intro/>
+          </Suspense>
+          <group position={[0, -1, 0]}>
+              <Borders/>
+              <Triangles/>
           </group>
-          <Intro/>
-        </Suspense>
-        <group position={[0, -1, 0]}>
-            <Borders/>
-            <Triangles/>
-        </group>
-    </Canvas>
-    <Loader 
-      suppressHydrationWarning={true} 
-      innerStyles={{width:"25vh", backgroundColor:"#08080D"}} 
-      barStyles={{backgroundColor:"#FFF133", width:"25vh"}} 
-      dataStyles={{fontFamily:"SFCSB", fontSize:"2em", display:"block", marginLeft:"0em"}} 
-      dataInterpolation={(p) => `${p.toFixed(2)}% Loaded`}
-      initialState={(active) => active} 
-    />
+      </Canvas>
+      <Loader 
+        suppressHydrationWarning={true} 
+        innerStyles={{width:"25vh", backgroundColor:"#08080D"}} 
+        barStyles={{backgroundColor:"#FFF133", width:"25vh"}} 
+        dataStyles={{fontFamily:"SFCSB", fontSize:"2em", display:"block", marginLeft:"0em"}} 
+        dataInterpolation={(p) => `${p.toFixed(2)}% Loaded`}
+        initialState={(active) => active} 
+      />
     </div>
   )
 }

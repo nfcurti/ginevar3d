@@ -77,7 +77,7 @@ export function Overlay() {
       
       <motion.div 
       id='moreText' 
-      className='chamuyo min-[680px]:bottom-[-22em] max-[680px]:bottom-[-325px] min-[680px]:text-[1em] min-[1800px]:right-[5em] max-[680px]:text-[0.6em] max-[650px]:p-8 max-[650px]:pt-16 max-[1800px]:left-0 max-[1800px]:right-0' 
+      className='chamuyo min-[680px]:bottom-[-15em] max-[680px]:bottom-[-325px] min-[680px]:text-[1em] min-[1800px]:right-[5em] max-[680px]:text-[1vhngr] max-[650px]:p-8 max-[650px]:pt-16 max-[1800px]:left-0 max-[1800px]:right-0' 
       style={{ position: 'absolute', fontFamily:"SFCSB", letterSpacing:"2px" }}
       >
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition:{duration:2} }} viewport={{ once: true }} className="line max-[1800px]:text-center ">

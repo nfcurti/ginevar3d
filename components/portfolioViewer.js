@@ -17,23 +17,23 @@ useGLTF.preload('/imac.glb')
 
 const images = [
   // Front
-  { position: [-0.3, 0, 1.5], rotation: [0, 0, 0], url: `/bluesmart.png` },
-  { position: [0.3, 0, 1.5], rotation: [0, 0, 0], url: `/icao.png` },
+  { position: [-0.3, 0, 1.5], rotation: [0, 0, 0], url: `/bluesmart.webp` },
+  { position: [0.3, 0, 1.5], rotation: [0, 0, 0], url: `/icao.webp` },
   // Back
-  { position: [-1, 0, -0.35], rotation: [0, 0, 0], url: '/highlights.png' },
-  { position: [1, 0, -0.35], rotation: [0, 0, 0], url: '/deliverly.png' },
-  { position: [0, 0, -0.35], rotation: [0, 0, 0], url: '/tree.png' },
+  { position: [-1, 0, -0.35], rotation: [0, 0, 0], url: '/highlights.webp' },
+  { position: [1, 0, -0.35], rotation: [0, 0, 0], url: '/deliverly.webp' },
+  { position: [0, 0, -0.35], rotation: [0, 0, 0], url: '/tree.webp' },
 ]
 
 const images_desktop = [
   // Left
-   { _id:1, factorpos: [11,-4.5,-1.5], position: [-3, 0, 0], rotation: [0, Math.PI / 2.5, 0], url:'/sdd.png'  },
-   { _id:2, factorpos: [7,-3,-2], position: [-3, 0, 1.8], rotation: [0, Math.PI / 2.5, 0], url: '/bkd.png' },
-   { _id:3, factorpos: [3,-2,-1], position: [-3, 0, 3.4], rotation: [0, Math.PI / 2.5, 0], url: '/isovoxd.png' },
+   { _id:1, factorpos: [11,-4.5,-1.5], position: [-3, 0, 0], rotation: [0, Math.PI / 2.5, 0], url:'/sdd.webp'  },
+   { _id:2, factorpos: [7,-3,-2], position: [-3, 0, 1.8], rotation: [0, Math.PI / 2.5, 0], url: '/bkd.webp' },
+   { _id:3, factorpos: [3,-2,-1], position: [-3, 0, 3.4], rotation: [0, Math.PI / 2.5, 0], url: '/isovoxd.webp' },
   // Right
-   { _id:4, factorpos: [-11,-4.5,-1.5], position: [3, 0, 0], rotation: [0, -Math.PI / 2.5, 0], url: `/rpd.png` },
-   { _id:5, factorpos: [-7,-3,-2], position: [3, 0, 1.8], rotation: [0, -Math.PI / 2.5, 0], url: `/zwickiesd.png` },
-   { _id:6, factorpos: [-3,-2,-1], position: [3, 0, 3.4], rotation: [0, -Math.PI / 2.5, 0], url: `/alpacad.png` }
+   { _id:4, factorpos: [-11,-4.5,-1.5], position: [3, 0, 0], rotation: [0, -Math.PI / 2.5, 0], url: `/rpd.webp` },
+   { _id:5, factorpos: [-7,-3,-2], position: [3, 0, 1.8], rotation: [0, -Math.PI / 2.5, 0], url: `/zwickiesd.webp` },
+   { _id:6, factorpos: [-3,-2,-1], position: [3, 0, 3.4], rotation: [0, -Math.PI / 2.5, 0], url: `/alpacad.webp` }
 ]
 
 const textsData = [
