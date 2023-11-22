@@ -205,7 +205,7 @@ a {
         border-bottom: 4px solid #dc2743;
     }
     ul li:nth-child(2) a::before {
-        content: "\f23a";
+        content: "\f09b ";
         color: white;
         border-bottom: 4px solid white;
     }
