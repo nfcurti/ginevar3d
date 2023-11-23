@@ -267,7 +267,6 @@ export default function PortfolioViewer () {
                 </mesh>
                 <TextsFrame/>
             </group>
-            <CameraController/>
             <Environment preset="city"  blur={1} />
         </Canvas>
     )

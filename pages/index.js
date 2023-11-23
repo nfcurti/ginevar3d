@@ -44,7 +44,7 @@ export default function App() {
   }
 
   return (
-    <main className={allowScroll? "overflow-hidden":"overflow-auto	"}>
+    <main className="overflow-hidden">
 
       <motion.div>
 
@@ -72,7 +72,7 @@ export default function App() {
       </motion.div>
 
       <motion.div>
-        
+
         <FooterViewer/>
 
       </motion.div>
