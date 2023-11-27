@@ -64,10 +64,10 @@ export default function App() {
 
       </motion.div>
 
-      <motion.div >
+      <motion.div className='bg-black'>
 
         <PortfolioViewer />
-        <span id="portfolio" className='hidden'></span>
+        <span id="portfolio" ></span>
 
       </motion.div>
 

@@ -163,7 +163,7 @@ export default function NavMenu(){
                 </a>:<></>}
 
                 {!aboutOpened?
-                <a id='jobsButton ' className="cta ml-8 hidden md:flex max-[1070px]:mb-[0.25em]" href="#">
+                <a id='jobsButton ' className="cta ml-8 hidden md:flex max-[1070px]:mb-[0.25em]" href="https://www.linkedin.com/company/ginevar/jobs/" target='_blank'>
                   <span>JOBS</span>
                   <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
