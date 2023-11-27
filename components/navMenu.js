@@ -39,6 +39,21 @@ export default function NavMenu(){
   
   
     return <>
+    
+    {aboutOpened?
+            /* About Page */
+            <motion.div
+            id='aboutPage' 
+            className="h-[200vh] w-[100vw] bg-[#08080D] absolute top-0 flex z-10">
+              <motion.div>
+                <p className='text-[4em] ml-[2em] mt-[0.5em]'>ABOUT US</p>
+                <AboutViewer className="bg-[#08080D]"/>
+              </motion.div>
+              
+            </motion.div>
+            :
+            <></>
+            }
       <motion.div id='buttonsWrapper' >
 
             {/* onClick Transition */}
@@ -52,20 +67,6 @@ export default function NavMenu(){
                 <Image className="transition__logo img" width={50} height={50} alt='transitionlogo'  src='gllogolight.svg'/>
             </motion.div>
        
-            {aboutOpened?
-            /* About Page */
-            <motion.div
-            id='aboutPage' 
-            className="h-[100vh] w-[100vw] bg-[#08080D] absolute top-0 flex z-10">
-              <motion.div>
-                <p className='text-[4em] ml-[2em] mt-[0.5em]'>ABOUT US</p>
-                <AboutViewer/>
-              </motion.div>
-              
-            </motion.div>
-            :
-            <></>
-            }
 
             {menuOpened?
             <motion.div 
