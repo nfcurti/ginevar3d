@@ -64,7 +64,7 @@ export default function App() {
 
       </motion.div>
 
-      <motion.div className='bg-black'>
+      <motion.div className='bg-black relative'>
 
         <PortfolioViewer />
         <span id="portfolio" ></span>

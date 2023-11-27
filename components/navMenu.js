@@ -9,6 +9,14 @@ export default function NavMenu(){
   const [aboutOpened, setAboutOpened] = useState(false)
   const delay = ms => new Promise(res => setTimeout(res, ms));
 
+  
+
+
+function scaleDown(){
+  animate("#aboutPage", { scale: [1, 0] }, { type: "spring" })
+}
+
+
     useEffect(()=>{
   
       
@@ -32,15 +40,14 @@ export default function NavMenu(){
         ["#aboutPage", { scale: 1 }, { delay: stagger(0.1) }]
       ]
 
-      if(isTrue==true){animate(reverseSequence);await delay(2000);setAboutOpened(isTrue)}
-      if(isTrue==false){animate(sequence);await delay(500);setAboutOpened(isTrue)}
+      if(isTrue==true){animate(reverseSequence);await delay(200);setAboutOpened(isTrue)}
+      if(isTrue==false){animate(sequence);await delay(100);setAboutOpened(isTrue)}
       
     }
   
   
     return <>
     
-    {aboutOpened?
             /* About Page */
             <motion.div
             id='aboutPage' 
@@ -51,9 +58,7 @@ export default function NavMenu(){
               </motion.div>
               
             </motion.div>
-            :
-            <></>
-            }
+            
       <motion.div id='buttonsWrapper' >
 
             {/* onClick Transition */}
@@ -135,7 +140,7 @@ export default function NavMenu(){
                 </a>:<></>}
 
                 {!aboutOpened?
-                <a onClick={()=>changeAbout(true)} href='javascript:void(0)' id='aboutButton' className="cta ml-8 buttontr hidden md:flex max-[1070px]:mb-[0.25em]" href="#">
+                <a onClick={()=>{changeAbout(true)}} href='javascript:void(0)' id='aboutButton' className="cta ml-8 buttontr hidden md:flex max-[1070px]:mb-[0.25em]" >
                   <span>ABOUT</span>
                   <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
