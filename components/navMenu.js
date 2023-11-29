@@ -51,7 +51,9 @@ function scaleDown(){
             /* About Page */
             <motion.div
             id='aboutPage' 
-            className="h-[200vh] w-[100vw] bg-[#08080D] absolute top-0 flex z-10">
+            initial={{scale:0}}
+            className="h-[200vh] w-[100vw] bg-[#08080D] absolute top-0 flex z-10 "
+            >
               <motion.div>
                 <p className='text-[4em] ml-[2em] mt-[0.5em]'>ABOUT US</p>
                 <AboutViewer className="bg-[#08080D]"/>
