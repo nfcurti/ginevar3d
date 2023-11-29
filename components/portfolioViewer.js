@@ -18,17 +18,17 @@ useGLTF.preload('/iphone.glb')
 useGLTF.preload('/imac.glb')
 
 const filesTranslator=[
-  {hash:"bluesmart", title:"Bluesmart App", desc:""},
-  {hash:"icao", title:"Icao for Pilots", desc:""},
-  {hash:"highlights", title:"Highlights App", desc:""},
-  {hash:"deliverly", title:"Deliverly App", desc:""},
-  {hash:"tree", title:"Tree Wallet", desc:""},
-  {hash:"isovoxd", title:"Isovox", desc:""},
-  {hash:"bkd", title:"Birra Korca", desc:""},
-  {hash:"sdd", title:"Sezon Dekor", desc:""},
-  {hash:"alpacad", title:"Alpacadabraz", desc:""},
-  {hash:"zwickiesd", title:"Zwickies Adventure", desc:""},
-  {hash:"rpd", title:"Rare Paradise NFT", desc:""}
+  {hash:"bluesmart", title:"Bluesmart App", desc:"bluesmart is your personal hub and at the core of the whole bluesmart smart luggage system. The new digital interface is conceived to reduce the friction while traveling and become the ultimate smart travel companion"},
+  {hash:"icao", title:"Icao for Pilots", desc:"Behold the brainchild of our studio: ICAO4PILOTS – designed by ICAO examiners to elevate your English proficiency for aviation. Meticulously crafted by our studio with care and powered by cutting-edge tech like AI, machine learning, and augmented reality."},
+  {hash:"highlights", title:"Highlights App", desc:"Stay in the loop with your favorite team's activities, catch the most thrilling game moments, and relive them with ease. It's your all-access pass to the best of the NBA!"},
+  {hash:"deliverly", title:"Deliverly App", desc:"Introducing the Deliverly app, designed and developed with precision, for the U.S. market, it's the perfect shopping companion. From local food spots to household essentials, Deliverly’s got it all covered."},
+  {hash:"tree", title:"Tree Wallet", desc:"TreeWallet offers enhanced security and supports multiple chains, including Ethereum Virtual Machine (EVM)-based chains, Tron, and Bitcoin networks. Send and receive any token with ease!"},
+  {hash:"isovoxd", title:"Isovox", desc:"We've built a shopify store that caters to every B2B and B2C client for a truly tailored experience. We've integrated a custom Shopify app to ensure smooth transactions for Isovox's top-quality products."},
+  {hash:"bkd", title:"Birra Korca", desc:"Introducing an e-commerce platform with a comprehensive catalog of their exquisite drinks and beverages, all available on their website. Now, you can explore, select, and make your purchase in just a few clicks."},
+  {hash:"sdd", title:"Sezon Dekor", desc:"Our team redesigned and recreated the site, catering precisely to the owners' vision. From the structure to the design, every detail has been meticulously reworked."}, 
+  {hash:"alpacad", title:"Alpacadabraz", desc:"Alpacadabraz, the captivating NFT project we crafted for our client on the Eth blockchain. Our team worked on the frontend and the smart contracts, ensuring a seamless experience for minting and NFT detection."},
+  {hash:"zwickiesd", title:"Zwickies Adventure", desc:"Our development team has created a complete website, from smooth minting to precise NFT detection and a robust client-side whitelist - every line of code reflects our dedication to excellence."},
+  {hash:"rpd", title:"Rare Paradise NFT", desc:"RareParadise, the enchanting NFT project we developed for Christmas 2022 on the Ethereum blockchain.  The RareParadise website features minting, NFT detection, and a client-side whitelist for a seamless experience."}
 ]
 
 const images = [
@@ -63,12 +63,10 @@ function scaleUp(){
   animate("#detailsButton", { scale: [1, 0] }, { type: "spring" })
 }
 
-
 function scaleDown(){
   animate("#detailsContainer", { scale: [1, 0] }, { type: "spring" })
   animate("#detailsButton", { scale: [0, 1] }, { type: "spring" })
 }
-
 
 //Mobile
 function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
@@ -97,6 +95,7 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
       /* Animate details button and container */
       document.getElementById("detailsContainer").style.backgroundImage = `url(/${imgUrl})`;
       document.getElementById("detailsTitle").innerHTML = _item.title;
+      document.getElementById("detailsDesc").innerHTML = _item.desc;
       animate("#detailsButton", { opacity: [0, 1] }, { type: "linear" })
       
       /* Animate camera */
@@ -147,7 +146,6 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
   return (
     <group {...props}>
       <Phone url={url} name={name2}   scale={0.005} position={[-0.7, -0.05, 0]} rotation={[0.57, 0, 0]} />
-      
     </group>
   )
 }
@@ -230,6 +228,7 @@ function Desktops({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() 
       /* Animate details button and container */
       document.getElementById("detailsContainer").style.backgroundImage = `url(${imgUrl})`;
       document.getElementById("detailsTitle").innerHTML = _item[0].title;
+      document.getElementById("detailsDesc").innerHTML = _item[0].desc;
       animate("#detailsButton", { opacity: [0, 1] }, { type: "linear" })
 
 
@@ -307,8 +306,6 @@ function CameraController(...props){
 function DetailsViewer(){
   var Background = "/icaoportfolio.png"
 
-
-  
   function scaleUp(){
     animate("#detailsContainer", { scale: [0, 1] }, { type: "spring" })
     animate("#detailsButton", { scale: [1, 0] }, { type: "linear" })
@@ -322,13 +319,16 @@ function DetailsViewer(){
 
   return <>
     <motion.div id='detailsContainer' style={{border:"15px solid #FFF133",backgroundImage: `url(${Background})`, backgroundRepeat:"no-repeat", backgroundPosition:"50% 50%", backgroundSize:"70%"}} className="w-[60vw] h-[60vh] bg-[#08080D] absolute top-[20vh] left-[20vw] z-50 scale-0">
-    <motion.div className='w-[7em] pl-[2em] block relative mr-0'>
+      <motion.div className='w-[7em] pl-[2em] block relative mr-0'>
         <a className="cta w-[5.5em] ml-8 buttontr flex mt-[0.5em]" onClick={()=>scaleDown()} href='javascript:void(0)'>
             <span >CLOSE</span>
         </a>
       </motion.div>
-      <motion.div className='block pl-[2em] pr-[2em] absolute bottom-[2em] bg-[#FFF133] text-black'>
+      <motion.div className='block pl-[2em] pr-[2em] absolute bottom-[4em] bg-[#FFF133] text-black'>
         <span id='detailsTitle' className='text-[2em] mr-12' >ICAO FOR PILOTS</span>
+      </motion.div>
+      <motion.div className='block pl-[2em] pr-[2em] absolute w-[50%] bottom-[4em] right-0 bg-[#FFF133] text-black'>
+        <span id='detailsDesc' className='text-[1.2em] mr-12' >ICAO FOR PILOTS</span>
       </motion.div>
     </motion.div>
     
