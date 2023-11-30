@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   images: {
-    domains: ['docs.soliditylang.org', 'logosandtypes.com', "www.drupal.org", "global.discourse-cdn.com", "source.unsplash.com", "gsap.com", "pagepro.co", "pluralsight2.imgix.net", "cdn-icons-png.flaticon.com"],
+    domains: ['raw.githubusercontent.com', 'www.svgrepo.com',  'docs.soliditylang.org', 'logosandtypes.com', "www.drupal.org", "global.discourse-cdn.com", "source.unsplash.com", "gsap.com", "pagepro.co", "pluralsight2.imgix.net", "cdn-icons-png.flaticon.com"],
   },
 }
 

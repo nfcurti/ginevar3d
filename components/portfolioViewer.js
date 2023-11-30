@@ -294,7 +294,9 @@ function CameraController(...props){
       controls.enableZoom = false;
       controls.minDistance = 3;
       controls.maxDistance = 2000;
+      controls.autoRotate = true;
       return () => {
+        controls.update()
         controls.dispose();
       };
     },
@@ -320,7 +322,7 @@ function DetailsViewer(){
   return <>
     <motion.div id='detailsContainer' style={{border:"15px solid #FFF133",backgroundImage: `url(${Background})`, backgroundRepeat:"no-repeat", backgroundPosition:"50% 50%", backgroundSize:"70%"}} className="w-[60vw] h-[60vh] bg-[#08080D] absolute top-[20vh] left-[20vw] z-50 scale-0">
       <motion.div className='w-[7em] pl-[2em] block relative mr-0'>
-        <a className="cta w-[5.5em] ml-8 buttontr flex mt-[0.5em]" onClick={()=>scaleDown()} href='javascript:void(0)'>
+        <a className="cta w-[6.5em] ml-8 buttontr flex mt-[0.5em]" onClick={()=>scaleDown()} href='javascript:void(0)'>
             <span >CLOSE</span>
         </a>
       </motion.div>
@@ -333,7 +335,7 @@ function DetailsViewer(){
     </motion.div>
     
     <motion.div id='detailsButton' className={`absolute bottom-[10vh] left-[41.5%] right-[0] `}>
-    <a className="cta w-[8em] ml-8 buttontr flex mt-[0.5em]" onClick={()=>scaleUp()} href='javascript:void(0)'>
+    <a className="cta w-[9em] ml-8 buttontr flex mt-[0.5em]" onClick={()=>scaleUp()} href='javascript:void(0)'>
             <span >SEE DETAILS</span>
         </a>
     </motion.div>
@@ -368,6 +370,7 @@ export default function PortfolioViewer () {
                 <TextsFrame/>
             </group>
             <Environment preset="city"  blur={1} />
+            <CameraController/>
         </Canvas>
         <DetailsViewer/>
         </>

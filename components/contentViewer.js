@@ -9,7 +9,7 @@ import coolAnimation from "/public/coolAnimation.json";
 export default function ContentViewer(){
   const { scrollYProgress } = useScroll();
 
-  const height = useTransform(scrollYProgress, [0.2214,0.5424], ["50vh", "100vh"])
+  const height = useTransform(scrollYProgress, [0.2214,0.5424], ["70vh", "100vh"])
 
 
   return (

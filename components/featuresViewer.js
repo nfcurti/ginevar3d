@@ -16,13 +16,7 @@ export default function FeaturesViewer() {
   const isStackInView = useInView(refStack)
   const isWorksInView = useInView(refStack, {once:true})
 
-  const { scrollYProgress } = useScroll();
-
   const [stackitem, setStackitem] = useState(0);
-
-  const scale = useTransform(scrollYProgress, [0.5,0.66], [1, 5])
-  const y = useTransform(scrollYProgress, [0.50,0.54], [0, 150])
-  const x = useTransform(scrollYProgress, [0.50,0.54], [500, 50])
 
   const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -64,10 +58,10 @@ export default function FeaturesViewer() {
             </motion.div>
 
             <motion.div ref={refContent}  className='absolute' style={{transform: isContentInView ? "none" : "translateX(-200px)", opacity: isContentInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}} >
-              <motion.p className='mt-[21em] absolute md:ml-[3.3em] text-[30px] text-center w-[100vw] md:text-start md:w-[10em] text-[#FFF133]'>OUR RECIPE</motion.p>
+              <motion.p className='mt-[21em] absolute md:ml-[3.3em] text-[30px] text-center w-[100vw] md:text-start md:w-[10em] text-[#FFF133]'>OUR STACK</motion.p>
               <svg className='mt-[42em] absolute h-[400px] md:h-[800px]' xmlns="http://www.w3.org/2000/svg" width="1000" viewBox="0 0 500 500">
                 <path className=''  id="mainPath" d="M0,25 L 500,25" />
-                <motion.image className="hidden md:block " id="target" href="\gllogolight.svg" height="50" width="24" style={{x, scale, y}}/>
+                <motion.image className="hidden md:block " id="target" href="\gllogolight.svg" height="50" width="24" style={{x:"500px"}}/>
               </svg>
             </motion.div>
 
@@ -78,11 +72,11 @@ export default function FeaturesViewer() {
             </motion.div>
 
         </div>
-        <div className='h-[60em] bg-[#08080D] relative'>
+        <div className='h-[75em] bg-[#08080D] relative'>
 
             <motion.div className='relative'>
 
-              <motion.div ref={refWorks}  className='absolute mt-[5em] md:mt-[14em]' style={{transform: isWorksInView ? "none" : "translateX(400px)", opacity: isWorksInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
+              <motion.div ref={refWorks}  className='absolute mt-[5em] md:mt-[28em]' style={{transform: isWorksInView ? "none" : "translateX(400px)", opacity: isWorksInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
                   <motion.p className='mt-[21em] absolute md:ml-[3.3em] text-[30px] text-center w-[100vw] md:text-start md:w-[10em] text-[#FFF133]'>SNIPPETS & WORKS</motion.p>
                   <svg className='mt-[42em] absolute h-[400px] md:h-[800px]' xmlns="http://www.w3.org/2000/svg" width="1000"  viewBox="0 0 500 500">
                     <path className=''  id="mainPath" d="M0,25 L 500,25" />
@@ -92,19 +86,19 @@ export default function FeaturesViewer() {
 
             </motion.div>
 
-            <motion.div ref={refStack} className='relative min-[1750px]:flex'>
+            <motion.div ref={refStack} className='relative min-[1750px]:flex pt-[10em]'>
 
-              <motion.div className="wrappers" style={{transform: isStackInView ? "none" : "translateX(-1000px)", opacity: isStackInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
-                <Image width={1000} height={200} onMouseEnter={() => changeStack(0)} src="https://logosandtypes.com/wp-content/uploads/2020/11/Shopify.png" alt="shopify"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(1)} src="https://docs.soliditylang.org/en/latest/_images/solidity_logo.svg" alt="solidity"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(2)} src="https://www.drupal.org/files/project-images/nextjs-icon-dark-background.png" alt="nextjs"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(3)} src="https://global.discourse-cdn.com/standard17/uploads/threejs/original/2X/e/e4f86d2200d2d35c30f7b1494e96b9595ebc2751.png" alt="threejs"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(4)} src="https://source.unsplash.com/random/600x600?roses" alt="roses"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(5)} src="https://source.unsplash.com/random/600x600?sky" alt="sky"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(6)} src="https://gsap.com/community/uploads/monthly_2020_03/tweenmax.png.cf27916e926fbb328ff214f66b4c8429.png" alt="gsap"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(7)} src="https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png" alt="framer"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(8)} src="https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png" alt="node"/>
-                <Image width={1000} height={200}  onMouseEnter={() => changeStack(9)} src="https://cdn-icons-png.flaticon.com/512/5968/5968326.png" alt="typescript"/>
+              <motion.div className="wrappers  m-auto" style={{transform: isStackInView ? "none" : "translateX(-1000px)", opacity: isStackInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
+                <Image width={500} height={200} onMouseEnter={() => changeStack(0)} src="https://logosandtypes.com/wp-content/uploads/2020/11/Shopify.png" alt="shopify"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(1)} src="https://docs.soliditylang.org/en/latest/_images/solidity_logo.svg" alt="solidity"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(2)} src="https://www.drupal.org/files/project-images/nextjs-icon-dark-background.png" alt="nextjs"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(3)} src="https://global.discourse-cdn.com/standard17/uploads/threejs/original/2X/e/e4f86d2200d2d35c30f7b1494e96b9595ebc2751.png" alt="threejs"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(4)} src="https://www.svgrepo.com/show/353751/flutter.svg" alt="Flutter"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(5)} src="https://raw.githubusercontent.com/react-icons/react-icons/master/react-icons.svg" alt="React"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(6)} src="https://gsap.com/community/uploads/monthly_2020_03/tweenmax.png.cf27916e926fbb328ff214f66b4c8429.png" alt="gsap"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(7)} src="https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png" alt="framer"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(8)} src="https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png" alt="node"/>
+                <Image width={500} height={200}  onMouseEnter={() => changeStack(9)} src="https://cdn-icons-png.flaticon.com/512/5968/5968326.png" alt="typescript"/>
               </motion.div>
 
               <motion.div id='stackInfo' className='mt-[auto] max-[1750px]:w-[100%]   min-[1750px]:w-[40%] min-[1750px]:ml-[1em] ' style={{transform: isStackInView ? "none" : "translateX(1000px)", opacity: isStackInView ? 1 : 0, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"}}>
@@ -224,7 +218,7 @@ export default function FeaturesViewer() {
             
             .wrappers img:hover {
               z-index: 2;
-              transform: scale(2);
+              transform: scale(1.5);
             }
 
             #mainPath {

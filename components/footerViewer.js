@@ -14,7 +14,7 @@ export default function FooterViewer(){
 
 
   return (
-  <div className='h-[47vh] overflow-hidden hidescrollbar bg-black'>
+  <div className='h-[60vh]  overflow-hidden hidescrollbar bg-black'>
     <motion.div id="section1" style={{height}} className="gsap-section">
       <motion.div style={{opacity}}>
         <Lottie className="w-[100vh]  mx-auto"   animationData={coolAnimationFull} />
