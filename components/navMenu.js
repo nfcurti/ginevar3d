@@ -48,7 +48,7 @@ function scaleDown(){
   
     return <>
     
-            /* About Page */
+            {/* About Page */}
             <motion.div
             id='aboutPage' 
             initial={{scale:0}}
@@ -156,7 +156,7 @@ function scaleDown(){
                 </a>:<></>}
 
                 {aboutOpened?
-                <a onClick={()=>changeAbout(false)} href='javascript:void(0)' className="cta ml-8 buttontr hidden md:flex max-[1070px]:mb-[0.25em] mt-[0.5em]" href="#">
+                <a onClick={()=>changeAbout(false)} href='javascript:void(0)' className="cta ml-8 buttontr hidden md:flex max-[1070px]:mb-[0.25em] mt-[0.5em]" >
                   <span>HOME</span>
                   <span>
                     <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

@@ -97,9 +97,9 @@ export default function AboutViewer() {
             <br/>  Shopify based apps
           </motion.p>
           <motion.div initial={{opacity:0}} animate={{ opacity:1 }} transition={{ delay: 1.75 }}   className="basis-1/2 relative m-auto w-[18em] mt-[4em]">
-            <Image  className=" ml-[5em] ysImage yellowShadow" width={300} height={400} src="/clw1.webp"/>
-            <Image  className="  ysImage yellowShadow" width={300} height={400} src="/clw2.webp"/>
-            <Image  className=" ml-[-5em] ysImage yellowShadow" width={300} height={400} src="/clw3.webp"/>
+            <Image alt="Curtlab Worlds 1"  className=" ml-[5em] ysImage yellowShadow" width={300} height={400} src="/clw1.webp"/>
+            <Image alt="Curtlab Worlds 2"  className="  ysImage yellowShadow" width={300} height={400} src="/clw2.webp"/>
+            <Image alt="Curtlab Worlds 3"  className=" ml-[-5em] ysImage yellowShadow" width={300} height={400} src="/clw3.webp"/>
           </motion.div>
         </motion.div>
         <motion.div>
